@@ -81,6 +81,13 @@ main {
     height: 100%;
     box-shadow: 0 0 10px 0 black;
     object-fit: fill;
+    cursor: pointer;
+
+    transition: all 0.2s;
+}
+
+.gallery img:hover {
+    transform: scale(1.1);
 }
 
 .meme-editor > .grid-container {

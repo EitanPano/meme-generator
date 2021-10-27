@@ -1,14 +1,10 @@
-'use strict';
+"use strict";
 
 function onInit() {
-    setCanvas();
     renderGallery();
-    getShapes();
-    console.log('Working');
+    setCanvas();
+    addClickEvents();
+
+    // getShapes();
+    console.log("Working");
 }
-
-
-
-
-
-

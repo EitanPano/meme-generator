@@ -45,6 +45,7 @@ function loadImageFromInput(ev, onImageReady) {
 function renderImg(img) {
     const newImg = setImgAspectRatio(img);
     console.log(img.width);
+    console.log(img.height);
     gElCanvas.width = img.width;
     gElCanvas.height = img.height;
     gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
