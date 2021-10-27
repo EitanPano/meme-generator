@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,12 +8,49 @@
     <link rel="stylesheet" href="styles/style.css">
     <title>Meme Generator</title>
 </head>
+
 <body onload="onInit()">
-    <h1>Meme Generator</h1>
-    
+
+    <header class="main-header fixed">
+        <div class="main-layout header-container flex align-center space-between">
+            <h1><a href="">Memesy</a></h1>
+
+            <nav>
+                <ul class="main-nav flex clean-list">
+                    <li><a href="">Gallery</a></li>
+                    <li><a href="">Memes</a></li>
+                    <li><a href="">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-layout">
+        <div class="grid-container">
+            <div class="canvas-container">
+                <canvas width="1000" height="1000"></canvas>
+                <div class="canvas-tools">
+                    <input type="text">
+                </div>
+            </div>
+
+            <aside class="actions-container flex">
+                <h2>Options</h2>
+                <a href="#" onclick="downloadCanvas(this)" download="mycanvas">Download</a>
+                <!-- <button>ABOUT</button> -->
+                <input type="file" class="file-input btn" name="image" onchange="onImgInput(event)" />
+                <button class="btn" onclick="uploadImg()">UPLOAD</button>
+                <p class="user-msg"></p>
+                <div class="share-container"></div>
+            </aside>
+        </div>
+    </main>
 
 
-
+    <footer>&copy Copyright by EPDevelopment</footer>
+    <script src="js/service/upload-service.js"></script>
+    <script src="js/canvas-controller.js"></script>
     <script src="js/main.js"></script>
 </body>
+
 </html>
