@@ -22,7 +22,7 @@ function addClickEvents() {
                 selectMeme(img);
             });
         });
-    }, 500);
+    }, 750);
 }
 
 function loadImage(url, el) {

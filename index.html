@@ -11,6 +11,28 @@
 
 <body onload="onInit()">
 
+        <!-- TESTING STATES HERE -->
+        <main class="main-layout meme-editor">
+            <div class="grid-container">
+                <div class="canvas-container flex align-center justify-center">
+                    <canvas></canvas>
+                    <div class="canvas-tools">
+                        <input type="text">
+                    </div>
+                </div>
+    
+                <aside class="actions-container flex">
+                    <h2>Options</h2>
+                    <a href="#" onclick="downloadCanvas(this)" download="mycanvas">Download</a>
+                    <!-- <button>ABOUT</button> -->
+                    <input type="file" class="file-input btn" name="image" onchange="onImgInput(event)" />
+                    <!-- <button class="btn" onclick="uploadImg()">UPLOAD</button> -->
+                    <p class="user-msg"></p>
+                    <div class="share-container"></div>
+                </aside>
+            </div>
+        </main>
+
     <header class="main-header fixed">
         <div class="main-layout header-container flex align-center space-between">
             <h1><a href="">Memesy</a></h1>
@@ -29,31 +51,6 @@
         <div class="grid-container">
         </div>
     </section>
-
-    <!-- TESTING STATES HERE -->
-    <main class="main-layout meme-editor">
-        <div class="grid-container">
-            <div class="canvas-container flex align-center justify-center">
-                <canvas></canvas>
-                <div class="canvas-tools">
-                    <input type="text">
-                </div>
-            </div>
-
-            <aside class="actions-container flex">
-                <h2>Options</h2>
-                <a href="#" onclick="downloadCanvas(this)" download="mycanvas">Download</a>
-                <!-- <button>ABOUT</button> -->
-                <input type="file" class="file-input btn" name="image" onchange="onImgInput(event)" />
-                <!-- <button class="btn" onclick="uploadImg()">UPLOAD</button> -->
-                <p class="user-msg"></p>
-                <div class="share-container"></div>
-            </aside>
-        </div>
-    </main>
-
-
-
 
     <!-- <footer>&copy Copyright by EPDevelopment</footer> -->
 
