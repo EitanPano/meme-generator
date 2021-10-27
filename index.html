@@ -27,8 +27,8 @@
 
     <main class="main-layout">
         <div class="grid-container">
-            <div class="canvas-container">
-                <canvas width="1000" height="1000"></canvas>
+            <div class="canvas-container flex align-center justify-center">
+                <canvas></canvas>
                 <div class="canvas-tools">
                     <input type="text">
                 </div>
@@ -39,7 +39,7 @@
                 <a href="#" onclick="downloadCanvas(this)" download="mycanvas">Download</a>
                 <!-- <button>ABOUT</button> -->
                 <input type="file" class="file-input btn" name="image" onchange="onImgInput(event)" />
-                <button class="btn" onclick="uploadImg()">UPLOAD</button>
+                <!-- <button class="btn" onclick="uploadImg()">UPLOAD</button> -->
                 <p class="user-msg"></p>
                 <div class="share-container"></div>
             </aside>
