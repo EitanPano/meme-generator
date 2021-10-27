@@ -57,6 +57,5 @@ function setImgAspectRatio(img) {
         img.width = img.width / 1.2;
         img.height = img.height / 1.2;
     }
-
     setImgAspectRatio(img);
 }
