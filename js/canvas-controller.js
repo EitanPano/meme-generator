@@ -14,7 +14,6 @@ function setCanvas() {
 
 function renderCanvas() {
     gCtx.fillStyle = "#ede5ff";
-    // gCtx.fillRect(0 + 50, 0 + 100, gElCanvas.width -100, gElCanvas.height -150);
     gElCanvas.width = gElCanvas.width - 100;
     gElCanvas.height = gElCanvas.height - 100;
 }
@@ -39,7 +38,6 @@ function loadImageFromInput(ev, onImageReady) {
         var img = new Image();
         img.onload = onImageReady.bind(null, img);
         img.src = event.target.result;
-        gImg = img;
     };
     reader.readAsDataURL(ev.target.files[0]);
 }
