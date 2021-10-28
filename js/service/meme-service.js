@@ -15,21 +15,22 @@ let gMeme = {
             y: 50,
             align: "center",
             color: "white",
-            border: 'black',
+            border: "black",
         },
         {
             txt: "Enter Text Here",
             size: 48,
+            x: 0,
+            y: 50 - 30,
             align: "center",
             color: "white",
-            border: 'black',
+            border: "black",
         },
     ],
 };
 let gId = 0;
 
 _createImgs();
-
 
 function _createImgs() {
     let imgs = loadFromStorage(IMGS_KEY);
@@ -86,6 +87,11 @@ function txtLower(lineIdx = 0) {
     gMeme.lines[lineIdx].y += 2;
 }
 
+function switchFocus() {
+    if (gMeme.selectedLineIdx === gMeme.lines.length - 1) gMeme.selectedLineIdx = 0;
+    else gMeme.selectedLineIdx++;
+}
+
 function _createImg(url) {
     const img = {
         id: gId + 1,
@@ -103,4 +109,8 @@ function _saveImgsToStorage() {
 
 function getImgs() {
     return gImgs;
+}
+
+function getLineIdx() {
+    return gMeme.selectedLineIdx;
 }

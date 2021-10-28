@@ -47,11 +47,12 @@ function onSelectMeme(img) {
     setCanvas();
     renderImg(gMeme.selectedImg);
     drawText(gMeme.lines[0].txt, gMeme.width / 2, gMeme.lines[0].y, gMeme.lines[0].size);
+    drawText(gMeme.lines[1].txt, gMeme.width / 2,gElCanvas.height - gMeme.lines[1].y, gMeme.lines[1].size);
     // drawText(gMeme.lines[1].txt, gMeme.width / 2, gElCanvas.height - 30);
 }
 
 function onTxtChange(val) {
-    txtChange(val);
+    txtChange(val, getLineIdx());
     renderMeme();
 }
 
@@ -75,10 +76,15 @@ function onTxtLower() {
     renderMeme();
 }
 
+function onSwitchFocus() {
+    switchFocus();
+    renderMeme();
+}
+
 function renderMeme() {
     gCtx.drawImage(gMeme.selectedImg, 0, 0, gElCanvas.width, gElCanvas.height);
     drawText(gMeme.lines[0].txt, gMeme.width / 2, gMeme.lines[0].y, gMeme.lines[0].size);
-    // drawText(gMeme.lines[1].txt, gMeme.width/2, gMeme.height - 50)
+    drawText(gMeme.lines[1].txt, gMeme.width / 2,gElCanvas.height - gMeme.lines[1].y, gMeme.lines[0].size);
 }
 
 function renderImg(img) {
