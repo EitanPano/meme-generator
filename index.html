@@ -13,7 +13,7 @@
 
     <header class="main-header fixed">
         <div class="main-layout header-container flex align-center space-between">
-            <h1><a href="">Memesy</a></h1>
+            <h1 class="logo"><a class="class="logo"" href="">Memesy</a></h1>
 
             <nav>
                 <ul class="main-nav flex clean-list">
@@ -25,7 +25,6 @@
         </div>
     </header>
 
-    <!-- TESTING STATES HERE -->
     <main class="main-layout meme-editor hidden">
         <div class="grid-container">
             <div class="canvas-container flex align-center justify-center">
@@ -34,12 +33,16 @@
                 </canvas>
 
                 <div class="canvas-tools flex justify-center align-center">
-                    <input type="text" placeholder="Text Line Here" onkeyup="onTxtChange(this.value)">
-                    <button class="btn" onclick="onTxtBigger()">A+</button>
-                    <button class="btn" onclick="onTxtSmaller()">A-</button>
-                    <button class="btn" onclick="onTxtHigher()">A⬆</button>
-                    <button class="btn" onclick="onTxtLower()">A⬇</button>
-                    <button class="btn" onclick="onSwitchFocus()">↺</button>
+                    <div class="box2 flex">
+                        <button class="btn" onclick="onSwitchFocus()">↺</button>
+                        <input type="text" placeholder="Text Line Here" onkeyup="onTxtChange(this.value)">
+                    </div>
+                    <div class="box1 flex">
+                        <button class="btn" onclick="onTxtBigger()">A+</button>
+                        <button class="btn" onclick="onTxtSmaller()">A-</button>
+                        <button class="btn" onclick="onTxtHigher()">A⬆</button>
+                        <button class="btn" onclick="onTxtLower()">A⬇</button>
+                    </div>
                 </div>
             </div>
 

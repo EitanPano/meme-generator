@@ -2,6 +2,20 @@
     box-sizing: border-box;
 }
 
+@font-face {
+    font-family: roboto;
+    src: url(../styles/fonts/roboto/Roboto-Regular.ttf);
+}
+
+@font-face {
+    font-family: luckiest_guy;
+    src: url(../styles/fonts/luckiest_guy/LuckiestGuy-Regular.ttf);
+}
+
+html {
+    font-family: roboto;
+}
+
 body {
     /* width: 100%; */
     height: 100vh;
@@ -36,6 +50,7 @@ button {
 
 input {
     height: 2em;
+    /* margin-bottom: 0.5em; */
 }
 
 input[type=text] {
@@ -85,6 +100,12 @@ main {
     display: flex;
 }
 
+/* box1 */
+
+.box1, .box2 {
+    margin: 5px;
+}
+
 .align-center {
     align-items: center;
 }
@@ -128,6 +149,19 @@ main {
     padding: 0 0 0 5px;
 }
 
+/* logo */
+
+.logo {
+    font-family: luckiest_guy;
+    font-size: 3em;
+    transition: all 0.3s;
+}
+
+.logo:hover {
+    text-shadow: 0 0 20px black;
+    color: white;
+}
+
 /* main nav */
 
 .main-nav li > a {
@@ -160,7 +194,7 @@ main {
 
 .gallery > .grid-container {
     display: grid;
-    grid-template-columns: repeat(12, 1fr);
+    grid-template-columns: repeat(9, 1fr);
     grid-template-rows: auto;
 
     grid-auto-flow: dense;
@@ -209,15 +243,14 @@ main {
     gap: 20px;
 
     display: grid;
-    grid-auto-flow: dense;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: 100%;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(7, 1fr);
 }
 
 .canvas-container {
     position: relative;
-    grid-column: 1/4;
-    grid-row: 1/2;
+    grid-column: 1/9;
+    grid-row: 1/7;
     margin-right: 10px;
     width: 100%;
     height: 100%;
@@ -234,10 +267,10 @@ canvas {
 .actions-container {
     border-radius: 5px;
     padding: 20px;
-    grid-column: 4 / 5;
-    grid-row: 1/2;
+    grid-column: 2/8;
+    grid-row: 6/8;
     flex-direction: column;
-    max-width: 300px;
+    /* max-width: 300px; */
     background-color: white;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.4);
 }
@@ -245,8 +278,9 @@ canvas {
 .canvas-tools {
     position: absolute;
     top: 0;
-    border-radius: 2.5em;
-    padding: 0.3em 3em;
+    flex-direction: column;
+    padding: 0.5em;
+    border-radius: 10px;
     background-color: azure;
     box-shadow: 0 0.3em 1em 0 rgba(0, 0, 0, 0.4);
 }
@@ -276,10 +310,12 @@ canvas {
 /* mobile */
 
 @media  (max-width: 480px) {
+    .canvas-tools {
+        
+
+    }
     
 }
-
-
 
 /* small screen */
 
@@ -290,11 +326,49 @@ canvas {
 /* medium screen */
 
 @media  (min-width: 768px) {
+    .meme-editor > .grid-container  {
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: 100%;
+    }
+    .canvas-container {
+        position: relative;
+        grid-column: 1/4;
+        grid-row: 1/2;
+        margin-right: 10px;
+        width: 100%;
+        height: 100%;
+    }
     
+    canvas {
+        background-color: aliceblue;
+        outline: 1px solid black;
+        cursor: grab;
+    }
+    
+    .actions-container {
+        border-radius: 5px;
+        padding: 20px;
+        grid-column: 4 / 5;
+        grid-row: 1/2;
+        flex-direction: column;
+        max-width: 300px;
+        background-color: white;
+        box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.4);
+    }
+
+    .canvas-tools {
+        padding: 0.3em 1em;
+        flex-direction: row; 
+    }
+    .gallery > .grid-container {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
 }
 
 /* large screen */
 
 @media  (min-width: 1024px) {
-    
+    .canvas-tools {
+        padding: 0.3em 3em;
+    }
 }
