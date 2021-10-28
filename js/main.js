@@ -4,6 +4,7 @@ function onInit() {
     renderGallery();
     setCanvas();
     addClickEvents();
+    addListeners();
 
     // getShapes();
     console.log("Working");

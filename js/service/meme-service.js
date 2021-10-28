@@ -2,32 +2,13 @@
 
 const IMGS_KEY = "Images DB";
 
-let gSavedMemes = []
+let gSavedMemes = [];
 let gKeywords = { happy: 12, "funny puk": 1 };
 let gImgs;
 let gMeme = {
     selectedImg: {},
     selectedLineIdx: 0,
-    lines: [
-        {
-            txt: "Enter Text Here",
-            size: 48,
-            x: 0,
-            y: 50,
-            align: "center",
-            color: "white",
-            border: "black",
-        },
-        {
-            txt: "Enter Text Here",
-            size: 48,
-            x: 0,
-            y: 50 - 30,
-            align: "center",
-            color: "white",
-            border: "black",
-        },
-    ],
+    lines: [],
 };
 
 let gId = 0;
@@ -69,12 +50,24 @@ function _createImgs() {
     _saveImgsToStorage();
 }
 
+function createTxtLine(txt, pos, size = 48, fill = 'white', stroke = 'black') {
+    gMeme.lines.push({
+        txt,
+        pos,
+        size,
+        fill,
+        stroke,
+        align: 'center',
+        isDrag: false, 
+    })
+}
+
 function saveMeme(img) {
     gSavedMemes.push({ url: img });
 }
 
 function loadSavedMemes() {
-    let savedMemes = loadFromStorage(SAVED_MEMES)
+    let savedMemes = loadFromStorage(SAVED_MEMES);
     if (!savedMemes) return;
     gSavedMemes = savedMemes;
 }
@@ -100,7 +93,8 @@ function txtLower(lineIdx = 0) {
 }
 
 function switchFocus() {
-    if (gMeme.selectedLineIdx === gMeme.lines.length - 1) gMeme.selectedLineIdx = 0;
+    if (gMeme.selectedLineIdx === gMeme.lines.length - 1)
+        gMeme.selectedLineIdx = 0;
     else gMeme.selectedLineIdx++;
 }
 
@@ -127,6 +121,27 @@ function getImgs() {
     return gImgs;
 }
 
+function getCurrLine() {
+    return gMeme.lines[gMeme.selectedLineIdx]
+}
+
 function getLineIdx() {
     return gMeme.selectedLineIdx;
+}
+
+function isLineClicked(lineIdx, clickedPos) {
+    const { pos }  = gMeme.lines[lineIdx];
+    const distance = Math.sqrt(
+        (pos.x - clickedPos.x) ** 2 + (pos.y - clickedPos.y) ** 2
+    );
+    return distance <= gMeme.lines[lineIdx].size;
+}
+
+function setLineDrag( lineIdx, isDrag) {
+    gMeme.lines[lineIdx].isDrag = isDrag;
+}
+
+function moveLine(dx, dy, lineIdx) {
+    gMeme.lines[lineIdx].pos.x += dx;
+    gMeme.lines[lineIdx].pos.y += dy;
 }
