@@ -5,21 +5,29 @@ const IMGS_KEY = "Images DB";
 let gKeywords = { happy: 12, "funny puk": 1 };
 let gImgs;
 let gMeme = {
-    selectedImgId: 1,
+    selectedImg: {},
     selectedLineIdx: 0,
     lines: [
         {
-            txt: "I never eat Falafel",
-            size: 20,
-            align: "left",
-            color: "red",
+            txt: "Enter Text Here",
+            size: 48,
+            align: "center",
+            color: "white",
+            border: 'black',
+        },
+        {
+            txt: "Enter Text Here",
+            size: 48,
+            align: "center",
+            color: "white",
+            border: 'black',
         },
     ],
 };
 let gId = 0;
 
 _createImgs();
-//  [{ id: 1, url: "img/1.jpg", keywords: ["happy"] }];
+
 
 function _createImgs() {
     let imgs = loadFromStorage(IMGS_KEY);
@@ -56,12 +64,15 @@ function _createImgs() {
     _saveImgsToStorage();
 }
 
+function txtChange(txt, lineIdx = 0) {
+    gMeme.lines[lineIdx].txt = txt;
+}
+
 function _createImg(url) {
     const img = {
         id: gId + 1,
         url,
         keywords: ["happy"],
-        // shape: getShape(url),
     };
 
     gId++;
