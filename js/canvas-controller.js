@@ -23,12 +23,11 @@ function resizeCanvas() {
     gElCanvas.height = elContainer.offsetHeight;
 }
 
-function drawText(text, x, y) {
-
-    gCtx.lineWidth = 2;
-    gCtx.strokeStyle = "red";
+function drawText(text, x, y, size) {
+    gCtx.lineWidth = 3;
+    gCtx.strokeStyle = "black";
     gCtx.fillStyle = "white";
-    gCtx.font = "30px Impact";
+    gCtx.font = `${size}px Impact`;
     gCtx.textAlign = 'center'
     gCtx.fillText(text, x, y);
     gCtx.strokeText(text, x, y);

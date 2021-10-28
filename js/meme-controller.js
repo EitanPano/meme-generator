@@ -4,7 +4,7 @@ const elGallery = document.querySelector(".gallery .grid-container");
 
 function renderGallery() {
     const imgs = getImgs();
-    imgs.map(img => {
+    imgs.map((img) => {
         loadImage(img.url, elGallery);
     });
 }
@@ -46,8 +46,8 @@ function onSelectMeme(img) {
     gMeme.selectedImg = selectedImg;
     setCanvas();
     renderImg(gMeme.selectedImg);
-    drawText(gMeme.lines[0].txt, gMeme.width/2, 50);
-    drawText(gMeme.lines[1].txt, gMeme.width/2, gElCanvas.height - 30);
+    drawText(gMeme.lines[0].txt, gMeme.width / 2, gMeme.lines[0].y, gMeme.lines[0].size);
+    // drawText(gMeme.lines[1].txt, gMeme.width / 2, gElCanvas.height - 30);
 }
 
 function onTxtChange(val) {
@@ -55,18 +55,37 @@ function onTxtChange(val) {
     renderMeme();
 }
 
+function onTxtBigger() {
+    txtBigger();
+    renderMeme();
+}
+
+function onTxtSmaller() {
+    txtSmaller();
+    renderMeme();
+}
+
+function onTxtHigher() {
+    txtHigher();
+    renderMeme();
+}
+
+function onTxtLower() {
+    txtLower();
+    renderMeme();
+}
+
 function renderMeme() {
     gCtx.drawImage(gMeme.selectedImg, 0, 0, gElCanvas.width, gElCanvas.height);
-    drawText(gMeme.lines[0].txt, gMeme.width/2, 50)
+    drawText(gMeme.lines[0].txt, gMeme.width / 2, gMeme.lines[0].y, gMeme.lines[0].size);
     // drawText(gMeme.lines[1].txt, gMeme.width/2, gMeme.height - 50)
 }
 
 function renderImg(img) {
     const newImg = setImgAspectRatio(img);
     gMeme.width = gElCanvas.width = img.width;
-    gMeme.height =  gElCanvas.height = img.height;
+    gMeme.height = gElCanvas.height = img.height;
     gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
-    
 }
 
 function setImgAspectRatio(img) {

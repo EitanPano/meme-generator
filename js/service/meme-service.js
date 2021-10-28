@@ -11,6 +11,8 @@ let gMeme = {
         {
             txt: "Enter Text Here",
             size: 48,
+            x: 0,
+            y: 50,
             align: "center",
             color: "white",
             border: 'black',
@@ -66,6 +68,22 @@ function _createImgs() {
 
 function txtChange(txt, lineIdx = 0) {
     gMeme.lines[lineIdx].txt = txt;
+}
+
+function txtBigger(lineIdx = 0) {
+    gMeme.lines[lineIdx].size += 2;
+}
+
+function txtSmaller(lineIdx = 0) {
+    gMeme.lines[lineIdx].size -= 2;
+}
+
+function txtHigher(lineIdx = 0) {
+    gMeme.lines[lineIdx].y -= 2;
+}
+
+function txtLower(lineIdx = 0) {
+    gMeme.lines[lineIdx].y += 2;
 }
 
 function _createImg(url) {
