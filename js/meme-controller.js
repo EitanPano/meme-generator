@@ -54,40 +54,46 @@ function onSelectMeme(img) {
     // drawText(gMeme.lines[1].txt, gMeme.width / 2, gElCanvas.height - 30);
 }
 
+function onSaveMeme() {
+    console.log('Saved');
+
+}
+
+// Toolbox
 function onTxtChange(val) {
     txtChange(val, getLineIdx());
     renderMeme();
 }
 
 function onTxtBigger() {
-    txtBigger();
+    txtBigger(getLineIdx());
     renderMeme();
 }
 
 function onTxtSmaller() {
-    txtSmaller();
+    txtSmaller(getLineIdx());
     renderMeme();
 }
 
 function onTxtHigher() {
-    txtHigher();
+    txtHigher(getLineIdx());
     renderMeme();
 }
 
 function onTxtLower() {
-    txtLower();
+    txtLower(getLineIdx());
     renderMeme();
 }
 
 function onSwitchFocus() {
-    switchFocus();
+    switchFocus(getLineIdx());
     renderMeme();
 }
 
 function renderMeme() {
     gCtx.drawImage(gMeme.selectedImg, 0, 0, gElCanvas.width, gElCanvas.height);
     drawText(gMeme.lines[0].txt, gMeme.width / 2, gMeme.lines[0].y, gMeme.lines[0].size);
-    drawText(gMeme.lines[1].txt, gMeme.width / 2,gElCanvas.height - gMeme.lines[1].y, gMeme.lines[0].size);
+    drawText(gMeme.lines[1].txt, gMeme.width / 2,gElCanvas.height - gMeme.lines[1].y, gMeme.lines[1].size);
 }
 
 function renderImg(img) {

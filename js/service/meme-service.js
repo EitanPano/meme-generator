@@ -1,6 +1,7 @@
 "use strict";
 
 const IMGS_KEY = "Images DB";
+const SAVED_KEY = 'My Memes';
 
 let gKeywords = { happy: 12, "funny puk": 1 };
 let gImgs;
