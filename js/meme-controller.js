@@ -1,6 +1,7 @@
 "use strict";
 
 const elGallery = document.querySelector(".gallery .grid-container");
+const elMemeEditor = document.querySelector('.meme-editor');
 
 function renderGallery() {
     const imgs = getImgs();
@@ -32,12 +33,14 @@ function addClickEvents() {
         elImgs.forEach((img) => {
             img.addEventListener("click", () => {
                 onSelectMeme(img);
+                document.documentElement.scrollTop = 0;
             });
         });
     }, 750);
 }
 
 function onSelectMeme(img) {
+    elMemeEditor.classList.remove('hidden');
     let selectedImg = new Image();
     selectedImg.src = img.src;
     selectedImg.width = img.naturalWidth;
@@ -122,3 +125,5 @@ function loadImageFromInput(ev, onImageReady) {
     };
     reader.readAsDataURL(ev.target.files[0]);
 }
+
+

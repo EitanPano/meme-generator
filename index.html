@@ -11,42 +11,13 @@
 
 <body onload="onInit()">
 
-        <!-- TESTING STATES HERE -->
-        <main class="main-layout meme-editor">
-            <div class="grid-container">
-                <div class="canvas-container flex align-center justify-center">
-                    <canvas><!-- Render from js here --></canvas>
-                    <div class="canvas-tools">
-                        <input type="text" placeholder="Text Line Here" onkeyup="onTxtChange(this.value)">
-                        <button onclick="onTxtBigger()">A+</button>
-                        <button onclick="onTxtSmaller()">A-</button>
-                        <button onclick="onTxtHigher()">A⬆</button>
-                        <button onclick="onTxtLower()">A⬇</button>
-                        <button onclick="onSwitchFocus()">↺</button>
-
-
-                    </div>
-                </div>
-    
-                <aside class="actions-container flex">
-                    <h2>Options</h2>
-                    <a href="#" onclick="downloadCanvas(this)" download="mycanvas">Download</a>
-                    <!-- <button>ABOUT</button> -->
-                    <input type="file" class="file-input btn" name="image" onchange="onImgInput(event)" />
-                    <!-- <button class="btn" onclick="uploadImg()">UPLOAD</button> -->
-                    <p class="user-msg"></p>
-                    <div class="share-container"></div>
-                </aside>
-            </div>
-        </main>
-
     <header class="main-header fixed">
         <div class="main-layout header-container flex align-center space-between">
             <h1><a href="">Memesy</a></h1>
 
             <nav>
                 <ul class="main-nav flex clean-list">
-                    <li><a href="">Gallery</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
                     <li><a href="">Memes</a></li>
                     <li><a href="">About</a></li>
                 </ul>
@@ -54,12 +25,42 @@
         </div>
     </header>
 
-    <section class="main-layout gallery">
+    <!-- TESTING STATES HERE -->
+    <main class="main-layout meme-editor hidden">
+        <div class="grid-container">
+            <div class="canvas-container flex align-center justify-center">
+                <canvas>
+                    <!-- Render from js here -->
+                </canvas>
+
+                <div class="canvas-tools flex justify-center align-center">
+                    <input type="text" placeholder="Text Line Here" onkeyup="onTxtChange(this.value)">
+                    <button class="btn" onclick="onTxtBigger()">A+</button>
+                    <button class="btn" onclick="onTxtSmaller()">A-</button>
+                    <button class="btn" onclick="onTxtHigher()">A⬆</button>
+                    <button class="btn" onclick="onTxtLower()">A⬇</button>
+                    <button class="btn" onclick="onSwitchFocus()">↺</button>
+                </div>
+            </div>
+
+            <aside class="actions-container flex">
+                <h2>Options</h2>
+                <a href="#" onclick="downloadCanvas(this)" download="mycanvas">Download</a>
+                <!-- <button>ABOUT</button> -->
+                <input type="file" class="file-input btn" name="image" onchange="onImgInput(event)" />
+                <!-- <button class="btn" onclick="uploadImg()">UPLOAD</button> -->
+                <p class="user-msg"></p>
+                <div class="share-container"></div>
+            </aside>
+        </div>
+    </main>
+
+    <section id="gallery" class="main-layout gallery">
         <div class="grid-container">
         </div>
     </section>
 
-    <!-- <footer>&copy Copyright by EPDevelopment</footer> -->
+    <footer>&copy Copyright by EPDevelopment</footer>
 
     <script src="js/service/storage-service.js"></script>
     <script src="js/service/meme-service.js"></script>
