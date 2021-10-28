@@ -1,8 +1,8 @@
 "use strict";
 
 const IMGS_KEY = "Images DB";
-const SAVED_KEY = 'My Memes';
 
+let gSavedMemes = []
 let gKeywords = { happy: 12, "funny puk": 1 };
 let gImgs;
 let gMeme = {
@@ -29,6 +29,7 @@ let gMeme = {
         },
     ],
 };
+
 let gId = 0;
 
 _createImgs();
@@ -68,6 +69,16 @@ function _createImgs() {
     _saveImgsToStorage();
 }
 
+function saveMeme(img) {
+    gSavedMemes.push({ url: img });
+}
+
+function loadSavedMemes() {
+    let savedMemes = loadFromStorage(SAVED_MEMES)
+    if (!savedMemes) return;
+    gSavedMemes = savedMemes;
+}
+
 function txtChange(txt, lineIdx = 0) {
     gMeme.lines[lineIdx].txt = txt;
 }
@@ -91,6 +102,10 @@ function txtLower(lineIdx = 0) {
 function switchFocus() {
     if (gMeme.selectedLineIdx === gMeme.lines.length - 1) gMeme.selectedLineIdx = 0;
     else gMeme.selectedLineIdx++;
+}
+
+function getMeme() {
+    return gMeme;
 }
 
 function _createImg(url) {

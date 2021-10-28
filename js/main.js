@@ -9,7 +9,9 @@ function onInit() {
     console.log("Working");
 }
 
-function toggleMenu() {
+function toggleMenu(ev) {
+    ev.stopPropagation();
+
     const elBody = document.body;
     elBody.classList.toggle("menu-open");
     const elBtnMenu = document.querySelector(".btn-menu");

@@ -16,13 +16,13 @@
             <h1 class="logo"><a href="">Memesy</a></h1>
 
             <nav>
-                <ul class="main-nav flex clean-list" onclick="toggleMenu()">
-                    <li><a href="#gallery">Gallery</a></li>
-                    <li><a href="">myMemes</a></li>
+                <ul class="main-nav flex clean-list" onclick="toggleMenu(event)">
+                    <li><a onclick="onMoveToGallery(event)" href="#gallery">Gallery</a></li>
+                    <li><a onclick="onMoveToMyMemes(event)" href="">myMemes</a></li>
                     <li><a href="">About</a></li>
                 </ul>
             </nav>
-            <button class="btn-menu" onclick="toggleMenu()">☰</button>
+            <button class="btn-menu" onclick="toggleMenu(event)">☰</button>
         </div>
     </header>
 
@@ -50,18 +50,25 @@
             <aside class="actions-container flex">
                 <h2>Options</h2>
                 <button class="btn btn-save" onclick="onSaveMeme()">Save Meme</button>
-                <a class="btn btn-download" href="#" onclick="downloadCanvas(this)" download="mycanvas">Download</a>
+                <!-- <a class="btn btn-download" href="#" onclick="downloadCanvas(this)" download="mycanvas">Download</a> -->
                 <!-- <button>ABOUT</button> -->
-                <input type="file" class="file-input btn" name="image" onchange="onImgInput(event)" />
-                <!-- <button class="btn" onclick="uploadImg()">UPLOAD</button> -->
-                <p class="user-msg"></p>
-                <div class="share-container"></div>
+                <!-- <input type="file" class="file-input" name="image" onchange="onImgInput(event)" /> -->
+                <!-- <button class="" onclick="uploadImg()">UPLOAD</button> -->
+                <!-- <p class="user-msg"></p> -->
+                <!-- <div class="share-container"></div> -->
             </aside>
         </div>
     </main>
 
     <section id="gallery" class="main-layout gallery">
         <div class="grid-container">
+            <!-- js render here -->
+        </div>
+    </section>
+
+    <section id="my-memes" class="main-layout my-memes">
+        <div class="grid-container">
+            <!-- js render here -->
         </div>
     </section>
 

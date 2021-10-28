@@ -1,13 +1,43 @@
 "use strict";
 
-const elGallery = document.querySelector(".gallery .grid-container");
-const elMemeEditor = document.querySelector('.meme-editor');
+const SAVED_MEMES = "My Memes";
+
+const elMemeEditor = document.querySelector(".meme-editor");
+const elGalleryGrid = document.querySelector(".gallery .grid-container");
+const elGallery = document.querySelector(".gallery");
+const elMyMemesGrid = document.querySelector(".my-memes .grid-container");
+const elMyMemes = document.querySelector(".my-memes");
 
 function renderGallery() {
     const imgs = getImgs();
     imgs.map((img) => {
-        loadImage(img.url, elGallery);
+        loadImage(img.url, elGalleryGrid);
     });
+}
+
+function onMoveToGallery(ev) {
+    ev.preventDefault();
+
+    elMemeEditor.classList.add("hidden");
+    elMyMemes.classList.add("hidden");
+    elGallery.classList.remove("hidden");
+}
+
+function onMoveToMyMemes(ev) {
+    ev.preventDefault();
+
+    let myMemes = loadFromStorage(SAVED_MEMES);
+    if (!myMemes) console.log('storage empty');
+    const strHTMLS = myMemes.map((meme) => {
+        console.log(meme.url);
+        return `<img src="${meme.url}" class="square">`
+    });
+
+    elMemeEditor.classList.add("hidden");
+    elMyMemes.classList.remove("hidden");
+    elGallery.classList.add("hidden");
+
+    elMyMemesGrid.innerHTML = strHTMLS.join('');
 }
 
 function loadImage(url, el) {
@@ -40,23 +70,37 @@ function addClickEvents() {
 }
 
 function onSelectMeme(img) {
-    elMemeEditor.classList.remove('hidden');
+    elMemeEditor.classList.remove("hidden");
     let selectedImg = new Image();
     selectedImg.src = img.src;
     selectedImg.width = img.naturalWidth;
     selectedImg.height = img.naturalHeight;
 
+    elGallery.classList.add("hidden");
     gMeme.selectedImg = selectedImg;
     setCanvas();
     renderImg(gMeme.selectedImg);
-    drawText(gMeme.lines[0].txt, gMeme.width / 2, gMeme.lines[0].y, gMeme.lines[0].size);
-    drawText(gMeme.lines[1].txt, gMeme.width / 2,gElCanvas.height - gMeme.lines[1].y, gMeme.lines[1].size);
-    // drawText(gMeme.lines[1].txt, gMeme.width / 2, gElCanvas.height - 30);
+    drawText(
+        gMeme.lines[0].txt,
+        gMeme.width / 2,
+        gMeme.lines[0].y,
+        gMeme.lines[0].size
+    );
+    drawText(
+        gMeme.lines[1].txt,
+        gMeme.width / 2,
+        gElCanvas.height - gMeme.lines[1].y,
+        gMeme.lines[1].size
+    );
 }
 
-function onSaveMeme() {
-    console.log('Saved');
+// options
 
+function onSaveMeme() {
+    const newMeme = gElCanvas.toDataURL('image/jpeg');
+    saveMeme(newMeme);
+    saveToStorage(SAVED_MEMES, gSavedMemes);
+    console.log("Saved");
 }
 
 // Toolbox
@@ -92,8 +136,18 @@ function onSwitchFocus() {
 
 function renderMeme() {
     gCtx.drawImage(gMeme.selectedImg, 0, 0, gElCanvas.width, gElCanvas.height);
-    drawText(gMeme.lines[0].txt, gMeme.width / 2, gMeme.lines[0].y, gMeme.lines[0].size);
-    drawText(gMeme.lines[1].txt, gMeme.width / 2,gElCanvas.height - gMeme.lines[1].y, gMeme.lines[1].size);
+    drawText(
+        gMeme.lines[0].txt,
+        gMeme.width / 2,
+        gMeme.lines[0].y,
+        gMeme.lines[0].size
+    );
+    drawText(
+        gMeme.lines[1].txt,
+        gMeme.width / 2,
+        gElCanvas.height - gMeme.lines[1].y,
+        gMeme.lines[1].size
+    );
 }
 
 function renderImg(img) {
@@ -131,5 +185,3 @@ function loadImageFromInput(ev, onImageReady) {
     };
     reader.readAsDataURL(ev.target.files[0]);
 }
-
-
