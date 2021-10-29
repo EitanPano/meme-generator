@@ -50,16 +50,24 @@ function _createImgs() {
     _saveImgsToStorage();
 }
 
-function createTxtLine(txt, pos, size = 48, fill = 'white', stroke = 'black') {
+function createTxtLine(
+    txt,
+    pos,
+    size = 48,
+    font = "Impact",
+    fill = "white",
+    stroke = "black"
+) {
     gMeme.lines.push({
         txt,
         pos,
         size,
+        font,
         fill,
         stroke,
-        align: 'center',
-        isDrag: false, 
-    })
+        align: "center",
+        isDrag: false,
+    });
 }
 
 function saveMeme(img) {
@@ -85,11 +93,11 @@ function txtSmaller(lineIdx = 0) {
 }
 
 function txtHigher(lineIdx = 0) {
-    gMeme.lines[lineIdx].y -= 2;
+    gMeme.lines[lineIdx].pos.y -= 2;
 }
 
 function txtLower(lineIdx = 0) {
-    gMeme.lines[lineIdx].y += 2;
+    gMeme.lines[lineIdx].pos.y += 2;
 }
 
 function switchFocus() {
@@ -122,7 +130,7 @@ function getImgs() {
 }
 
 function getCurrLine() {
-    return gMeme.lines[gMeme.selectedLineIdx]
+    return gMeme.lines[gMeme.selectedLineIdx];
 }
 
 function getLineIdx() {
@@ -130,14 +138,18 @@ function getLineIdx() {
 }
 
 function isLineClicked(lineIdx, clickedPos) {
-    const { pos }  = gMeme.lines[lineIdx];
-    const distance = Math.sqrt(
-        (pos.x - clickedPos.x) ** 2 + (pos.y - clickedPos.y) ** 2
-    );
-    return distance <= gMeme.lines[lineIdx].size;
+    const { pos } = gMeme.lines[lineIdx];
+    const isInnerWidth =
+        clickedPos.x <= pos.x + gMeme.lines[0].width &&
+        clickedPos.x >= pos.x - gMeme.lines[0].width;
+    const isinnerHight =
+        clickedPos.y <= pos.y + gMeme.lines[lineIdx].size / 5 &&
+        clickedPos.y >= pos.y - gMeme.lines[lineIdx].size;
+
+    return isInnerWidth && isinnerHight;
 }
 
-function setLineDrag( lineIdx, isDrag) {
+function setLineDrag(lineIdx, isDrag) {
     gMeme.lines[lineIdx].isDrag = isDrag;
 }
 

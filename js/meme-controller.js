@@ -27,9 +27,8 @@ function onMoveToMyMemes(ev) {
     ev.preventDefault();
 
     let myMemes = loadFromStorage(SAVED_MEMES);
-    if (!myMemes) console.log('storage empty');
+    if (!myMemes) return console.log('Storage Empty');
     const strHTMLS = myMemes.map((meme) => {
-        // console.log(meme.url);
         return `<img src="${meme.url}" class="square">`
     });
 
@@ -82,20 +81,8 @@ function onSelectMeme(img) {
     const top = { x: gElCanvas.width / 2, y: 50};
     createTxtLine('Enter Text Here', top);
     renderImg(gMeme.selectedImg);
-    drawText(
-        gMeme.lines[0].txt,
-        gMeme.lines[0].pos.x,
-        gMeme.lines[0].pos.y,
-        gMeme.lines[0].size,
-        gMeme.lines[0].fill,
-        gMeme.lines[0].stroke,
-    );
-    // drawText(
-    //     gMeme.lines[1].txt,
-    //     gMeme.width / 2,
-    //     gElCanvas.height - gMeme.lines[1].y,
-    //     gMeme.lines[1].size
-    // );
+    drawText(gMeme.lines[0]);
+    // drawText(gMeme.lines[1]);
 }
 
 // options
@@ -141,10 +128,11 @@ function onSwitchFocus() {
 function renderMeme() {
     gCtx.drawImage(gMeme.selectedImg, 0, 0, gElCanvas.width, gElCanvas.height);
     drawText(
-        gMeme.lines[0].txt,
-        gMeme.lines[0].pos.x,
-        gMeme.lines[0].pos.y,
-        gMeme.lines[0].size,
+        gMeme.lines[0]
+        // gMeme.lines[0].txt,
+        // gMeme.lines[0].pos.x,
+        // gMeme.lines[0].pos.y,
+        // gMeme.lines[0].size,
     );
     // drawText(
     //     gMeme.lines[1].txt,

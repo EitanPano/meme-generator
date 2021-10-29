@@ -26,16 +26,17 @@ function resizeCanvas() {
     gElCanvas.width = elContainer.offsetWidth;
     gElCanvas.height = elContainer.offsetHeight;
 }
-
-function drawText(text, x, y, size = 48, fill = 'white', stroke = 'black') {
+// text, x, y, size = 48, fill = 'white', stroke = 'black'
+function drawText(txtLine) {
     gCtx.beginPath();
     gCtx.lineWidth = 5;
-    gCtx.font = `${size}px Impact`;
-    gCtx.textAlign = "center";
-    gCtx.strokeStyle = `${stroke}`;
-    gCtx.strokeText(text, x, y);
-    gCtx.fillStyle = `${fill}`;
-    gCtx.fillText(text, x, y);
+    gCtx.font = `${txtLine.size}px ${txtLine.font}`;
+    gCtx.textAlign = txtLine.align;
+    gCtx.strokeStyle = `${txtLine.stroke}`;
+    gCtx.strokeText(txtLine.txt, txtLine.pos.x, txtLine.pos.y);
+    gCtx.fillStyle = `${txtLine.fill}`;
+    gCtx.fillText(txtLine.txt, txtLine.pos.x, txtLine.pos.y);
+    txtLine.width = gCtx.measureText(txtLine.text).width;
 }
 
 function renderTxtLine() {
@@ -63,6 +64,7 @@ function addTouchListeners() {
 
 function onDown(ev) {
     const pos = getEvPos(ev);
+    console.log('click');
     if (!isLineClicked(getLineIdx(), pos)) return;
     setLineDrag(getLineIdx(), true);
     gStartPos = pos;
