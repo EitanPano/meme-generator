@@ -2,7 +2,6 @@
 
 let gElCanvas;
 let gCtx;
-// let gElContainer = document.querySelector(".canvas-container")
 var gStartPos;
 const gTouchEvs = ["touchstart", "touchmove", "touchend"];
 
@@ -11,22 +10,12 @@ function setCanvas() {
     gCtx = gElCanvas.getContext("2d");
 
     resizeCanvas();
-    // const top = { x: gElCanvas.width / 2, y: 50};
-    // createTxtLine('Enter Text Here', top);
-    // renderCanvas();
 }
 
-// function renderCanvas() {
-//     gCtx.fillStyle = "#ede5ff";
-//     gElCanvas.width = elContainer.width
-//     gElCanvas.height = elContainer.height
-// }
-
 function resizeCanvas() {
-    // const elContainer = document.querySelector(".canvas-container");
-    const elContainer = document.querySelector('.canvas-container')
-    gElCanvas.width = elContainer.offsetWidth
-    gElCanvas.height = elContainer.offsetHeight
+    const elContainer = document.querySelector(".canvas-container");
+    gElCanvas.width = elContainer.offsetWidth;
+    gElCanvas.height = elContainer.offsetHeight;
 }
 
 function drawText(txtLine) {
@@ -39,6 +28,17 @@ function drawText(txtLine) {
     gCtx.fillStyle = `${txtLine.fill}`;
     gCtx.fillText(txtLine.txt, txtLine.pos.x, txtLine.pos.y);
     txtLine.width = gCtx.measureText(txtLine.text).width;
+}
+
+function drawFocus() {
+    const selectedLine = gMeme.lines[gMeme.selectedLineIdx];
+    if (!selectedLine) return;
+    const { pos } = selectedLine;
+    gCtx.beginPath();
+    gCtx.lineWidth = 2
+    gCtx.rect( pos.x -  selectedLine.width, pos.y - selectedLine.size, selectedLine.width * 2, selectedLine.size + 10);
+    gCtx.strokeStyle = "gray";
+    gCtx.stroke();
 }
 
 function renderTxtLine() {
@@ -66,11 +66,24 @@ function addTouchListeners() {
 
 function onDown(ev) {
     const pos = getEvPos(ev);
-    console.log('click');
-    if (!isLineClicked(getLineIdx(), pos)) return;
-    setLineDrag(getLineIdx(), true);
-    gStartPos = pos;
-    gElCanvas.style.cursor = 'grabbing';
+    // console.log("click");
+    // if (!isLineClicked(getLineIdx(), pos)) return;
+
+    const txtLines = getLines();
+    // console.log(txtLines);
+    txtLines.map((line , idx) => {
+        // console.log(line);
+        if (!isLineClicked(idx, pos)) return
+
+        setSelectedLine(idx);
+        setLineDrag(idx, true);
+        gElCanvas.style.cursor = "grabbing";
+        gStartPos = pos;
+        drawFocus();
+
+        document.querySelector('.canvas-tools .text-input').value = line.txt;
+    })
+    
 
 }
 
@@ -84,12 +97,13 @@ function onMove(ev) {
         gStartPos = pos;
         moveLine(dx, dy, getLineIdx());
         renderMeme();
+        drawFocus()
     }
 }
 
 function onUp() {
     setLineDrag(getLineIdx(), false);
-    gElCanvas.style.cursor = 'grab';
+    gElCanvas.style.cursor = "grab";
 }
 
 function getEvPos(ev) {

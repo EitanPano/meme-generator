@@ -69,19 +69,18 @@ function addClickEvents() {
 }
 
 function onSelectMeme(img) {
-    elMemeEditor.classList.remove("hidden");
     let selectedImg = new Image();
     selectedImg.src = img.src;
-    selectedImg.width = img.naturalWidth;
-    selectedImg.height = img.naturalHeight;
-
-    elGallery.classList.add("hidden");
     gMeme.selectedImg = selectedImg;
+    // selectedImg.width = img.naturalWidth;
+    // selectedImg.height = img.naturalHeight;
+    elMemeEditor.classList.remove("hidden");
+    elGallery.classList.add("hidden");
+
     setCanvas();
     renderImg(selectedImg);
     const top = { x: gElCanvas.width / 2, y: 50};
-    const bottom = { x: gElCanvas.width / 2, y: selectedImg.height - 20};
-    console.log(selectedImg.height);
+    const bottom = { x: gElCanvas.width / 2, y: gElCanvas.height - 20};
     createTxtLine('Enter Text Here', top);
     createTxtLine('Enter Text Here', bottom);
     drawText(gMeme.lines[0]);
@@ -123,26 +122,10 @@ function onTxtLower() {
     renderMeme();
 }
 
-function onSwitchFocus() {
-    switchFocus(getLineIdx());
-    renderMeme();
-}
-
 function renderMeme() {
     gCtx.drawImage(gMeme.selectedImg, 0, 0, gElCanvas.width, gElCanvas.height);
-    drawText(
-        gMeme.lines[0]
-        // gMeme.lines[0].txt,
-        // gMeme.lines[0].pos.x,
-        // gMeme.lines[0].pos.y,
-        // gMeme.lines[0].size,
-    );
-    // drawText(
-    //     gMeme.lines[1].txt,
-    //     gMeme.width / 2,
-    //     gElCanvas.height - gMeme.lines[1].y,
-    //     gMeme.lines[1].size
-    // );
+    if (!gMeme.lines) return console.log('gMeme has no lines');
+    gMeme.lines.forEach(line => drawText(line));
 }
 
 function renderImg(img) {

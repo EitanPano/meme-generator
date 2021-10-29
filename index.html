@@ -35,20 +35,21 @@
 
                 <div class="canvas-tools flex justify-center align-center">
                     <div class="box2 flex">
-                        <button class="btn" onclick="onSwitchFocus()">↺</button>
-                        <input type="text" placeholder="Text Line Here" onkeyup="onTxtChange(this.value)">
+                        <input class="text-input" type="text" placeholder="Text Line Here" onkeyup="onTxtChange(this.value)">
                     </div>
                     <div class="box1 flex">
                         <button class="btn" onclick="onTxtBigger()">A+</button>
                         <button class="btn" onclick="onTxtSmaller()">A-</button>
                         <button class="btn" onclick="onTxtHigher()">A⬆</button>
                         <button class="btn" onclick="onTxtLower()">A⬇</button>
+                        <button class="btn" onclick="onTxtRemove()">DEL</button>
                     </div>
                 </div>
             </div>
 
             <aside class="actions-container flex">
                 <h2>Options</h2>
+                <button class="btn">Add Text</button>
                 <button class="btn btn-save" onclick="onSaveMeme()">Save Meme</button>
                 <!-- <a class="btn btn-download" href="#" onclick="downloadCanvas(this)" download="mycanvas">Download</a> -->
                 <!-- <button>ABOUT</button> -->

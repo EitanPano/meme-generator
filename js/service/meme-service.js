@@ -137,16 +137,20 @@ function getLineIdx() {
     return gMeme.selectedLineIdx;
 }
 
+function getLines() {
+    return gMeme.lines;
+}
+
 function isLineClicked(lineIdx, clickedPos) {
     const { pos } = gMeme.lines[lineIdx];
     const isInnerWidth =
-        clickedPos.x <= pos.x + gMeme.lines[0].width &&
-        clickedPos.x >= pos.x - gMeme.lines[0].width;
-    const isinnerHight =
+        clickedPos.x <= pos.x + gMeme.lines[lineIdx].width &&
+        clickedPos.x >= pos.x - gMeme.lines[lineIdx].width;
+    const isInnerHight =
         clickedPos.y <= pos.y + gMeme.lines[lineIdx].size / 5 &&
         clickedPos.y >= pos.y - gMeme.lines[lineIdx].size;
 
-    return isInnerWidth && isinnerHight;
+    return isInnerWidth && isInnerHight;
 }
 
 function setLineDrag(lineIdx, isDrag) {
@@ -156,4 +160,8 @@ function setLineDrag(lineIdx, isDrag) {
 function moveLine(dx, dy, lineIdx) {
     gMeme.lines[lineIdx].pos.x += dx;
     gMeme.lines[lineIdx].pos.y += dy;
+}
+
+function setSelectedLine(idx) {
+    gMeme.selectedLineIdx = idx;
 }
