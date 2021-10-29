@@ -2,6 +2,7 @@
 
 let gElCanvas;
 let gCtx;
+// let gElContainer = document.querySelector(".canvas-container")
 var gStartPos;
 const gTouchEvs = ["touchstart", "touchmove", "touchend"];
 
@@ -10,23 +11,24 @@ function setCanvas() {
     gCtx = gElCanvas.getContext("2d");
 
     resizeCanvas();
-    const top = { x: gElCanvas.width / 2, y: 50};
+    // const top = { x: gElCanvas.width / 2, y: 50};
     // createTxtLine('Enter Text Here', top);
-    renderCanvas();
+    // renderCanvas();
 }
 
-function renderCanvas() {
-    gCtx.fillStyle = "#ede5ff";
-    gElCanvas.width = gElCanvas.width - 100;
-    gElCanvas.height = gElCanvas.height - 100;
-}
+// function renderCanvas() {
+//     gCtx.fillStyle = "#ede5ff";
+//     gElCanvas.width = elContainer.width
+//     gElCanvas.height = elContainer.height
+// }
 
 function resizeCanvas() {
-    const elContainer = document.querySelector(".canvas-container");
-    gElCanvas.width = elContainer.offsetWidth;
-    gElCanvas.height = elContainer.offsetHeight;
+    // const elContainer = document.querySelector(".canvas-container");
+    const elContainer = document.querySelector('.canvas-container')
+    gElCanvas.width = elContainer.offsetWidth
+    gElCanvas.height = elContainer.offsetHeight
 }
-// text, x, y, size = 48, fill = 'white', stroke = 'black'
+
 function drawText(txtLine) {
     gCtx.beginPath();
     gCtx.lineWidth = 5;

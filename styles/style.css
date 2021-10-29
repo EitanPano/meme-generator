@@ -98,10 +98,9 @@ main {
     display: flex;
 }
 
-/* box1 */
 
-.box1, .box2 {
-    margin: 5px;
+.space-around {
+    justify-content: space-around;
 }
 
 .align-center {
@@ -114,6 +113,12 @@ main {
 
 .space-between {
     justify-content: space-between;
+}
+
+/* flex boxes */
+
+.box1, .box2 {
+    margin: 5px;
 }
 
 /* list */
@@ -272,9 +277,12 @@ main {
 
 .canvas-container {
     position: relative;
+    flex-direction: column-reverse;
+    justify-content: space-around;
     grid-column: 1/9;
     grid-row: 1/7;
     margin-right: 10px;
+    background-color: rgba(204, 87, 33, 0.445);
     width: 100%;
     height: 100%;
 }
@@ -291,16 +299,17 @@ canvas {
     border-radius: 5px;
     padding: 20px;
     grid-column: 2/8;
-    grid-row: 6/8;
+    grid-row: 7/8;
     flex-direction: column;
-    /* max-width: 300px; */
     background-color: white;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.4);
 }
 
 .canvas-tools {
-    position: absolute;
-    top: -25px;
+    /* position: absolute; */
+    grid-row: 1/2;
+    grid-column: 8/8;
+    top: 0;
     flex-direction: column;
     padding: 0.5em;
     border-radius: 10px;
@@ -313,7 +322,6 @@ canvas {
     height: 2em;
     font-weight: bold;
     font-size: 1em;
-
     transition: all 0.2s;
 }
 
@@ -371,6 +379,7 @@ canvas {
         grid-template-rows: 100%;
     }
     .canvas-container {
+        justify-content: center;
         grid-column: 1/4;
         grid-row: 1/2;
     }
@@ -382,6 +391,7 @@ canvas {
     }
 
     .canvas-tools {
+        position: absolute;
         padding: 0.3em 1em;
         flex-direction: row;
         top: 0;

@@ -78,11 +78,14 @@ function onSelectMeme(img) {
     elGallery.classList.add("hidden");
     gMeme.selectedImg = selectedImg;
     setCanvas();
+    renderImg(selectedImg);
     const top = { x: gElCanvas.width / 2, y: 50};
+    const bottom = { x: gElCanvas.width / 2, y: selectedImg.height - 20};
+    console.log(selectedImg.height);
     createTxtLine('Enter Text Here', top);
-    renderImg(gMeme.selectedImg);
+    createTxtLine('Enter Text Here', bottom);
     drawText(gMeme.lines[0]);
-    // drawText(gMeme.lines[1]);
+    drawText(gMeme.lines[1]);
 }
 
 // options
