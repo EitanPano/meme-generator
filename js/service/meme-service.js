@@ -100,6 +100,26 @@ function txtLower(lineIdx = 0) {
     gMeme.lines[lineIdx].pos.y += 2;
 }
 
+function txtLeft(lineIdx = 0) {
+    gMeme.lines[lineIdx].align = 'right';
+}
+
+function txtCenter(lineIdx = 0) {
+    gMeme.lines[lineIdx].align = 'center';
+}
+
+function txtRight(lineIdx = 0) {
+    gMeme.lines[lineIdx].align = 'left';
+}
+
+function txtStroke(lineIdx = 0, color) {
+    gMeme.lines[lineIdx].stroke = `${color}`;
+}
+
+function txtFill(lineIdx = 0, color) {
+    gMeme.lines[lineIdx].fill = `${color}`;
+}
+
 function switchFocus() {
     if (gMeme.selectedLineIdx === gMeme.lines.length - 1)
         gMeme.selectedLineIdx = 0;
@@ -119,6 +139,11 @@ function _createImg(url) {
 
     gId++;
     return img;
+}
+
+function removeLine() {
+    if (!gMeme.lines.length) return console.log('No lines, Add Text.')
+    gMeme.lines.splice(gMeme.selectedLineIdx, 1);
 }
 
 function _saveImgsToStorage() {

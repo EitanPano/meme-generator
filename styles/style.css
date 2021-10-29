@@ -65,6 +65,13 @@ input[type=text]:focus {
     outline: 0;
 }
 
+input[type=color] {
+    background-color: transparent;
+    height: 2em;
+    width: 2em;
+    cursor: pointer;
+}
+
 main {
     height: 100%;
 }
@@ -127,6 +134,17 @@ main {
     list-style: none;
 }
 
+/* mask box */
+
+.mask-box {
+    position: relative;
+}
+
+.mask-box > input {
+    position: absolute;
+    opacity: 0;
+}
+
 /* components */
 
 /* layout */
@@ -157,6 +175,7 @@ main {
 .logo {
     font-family: luckiest_guy;
     font-size: 3em;
+    line-height: 1.5em;
     transition: all 0.3s;
 }
 
@@ -184,7 +203,7 @@ main {
     pointer-events: none;
     position: fixed;
     left: 0;
-    top: 59px;
+    top: 4.5em;
     right: 0;
     width: 100%;
     height: 100%;
@@ -218,7 +237,7 @@ main {
 /* gallery */
 
 .gallery {
-    padding-top: 95px;
+    margin-top: 95px;
     transition: all 0.5s;
 }
 
@@ -256,6 +275,7 @@ main {
 
 .meme-editor {
     transition: opacity 0.5s;
+    position: relative;
 }
 
 .hidden {
@@ -276,13 +296,9 @@ main {
 }
 
 .canvas-container {
-    position: relative;
-    flex-direction: column-reverse;
-    justify-content: space-around;
-    grid-column: 1/9;
-    grid-row: 1/7;
+    grid-column: 2/8;
+    grid-row: 2/7;
     margin-right: 10px;
-    background-color: rgba(204, 87, 33, 0.445);
     width: 100%;
     height: 100%;
 }
@@ -297,8 +313,8 @@ canvas {
 
 .actions-container {
     border-radius: 5px;
-    padding: 20px;
-    grid-column: 2/8;
+    padding: 1em;
+    grid-column: 1/9;
     grid-row: 7/8;
     flex-direction: column;
     background-color: white;
@@ -306,10 +322,10 @@ canvas {
 }
 
 .canvas-tools {
-    /* position: absolute; */
+    position: absolute;
     grid-row: 1/2;
     grid-column: 8/8;
-    top: 0;
+    top: 4em;
     flex-direction: column;
     padding: 0.5em;
     border-radius: 10px;
@@ -323,6 +339,7 @@ canvas {
     font-weight: bold;
     font-size: 1em;
     transition: all 0.2s;
+    /* padding: 5px; */
 }
 
 .canvas-tools .btn {
@@ -338,6 +355,42 @@ canvas {
     color: rgb(59, 150, 255);
 }
 
+.icons {
+    background-size:65%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.canvas-tools .btn-delete{
+    background-image: url(../icons/trash-alt.svg);
+    background-color: rgba(255, 0, 0, 0.692);
+}
+
+.canvas-tools .btn-delete:hover {
+    background-color: rgb(255, 0, 0);
+}
+
+.canvas-tools .btn-align-left{
+    background-image: url(../icons/align-left.svg);
+}
+
+.canvas-tools .btn-align-center{
+    background-image: url(../icons/align-center.svg);
+}
+
+.canvas-tools .btn-align-right{
+    background-image: url(../icons/align-right.svg);
+}
+
+.canvas-tools .btn-stroke{
+    background-image: url(../icons/stripe-s-brands.svg);
+    background-size: 55%;
+}
+
+.canvas-tools .btn-palette{
+    background-image: url(../icons/palette.svg);
+}
+
 .main-footer {
     margin-top: 20px;
     height: 150px;
@@ -348,6 +401,14 @@ canvas {
 }
 
 /* mobile */
+
+/* small screen */
+
+@media  (max-width: 480px) {
+    .canvas-container {
+        grid-row: 3/7;
+    }
+}
 
 @media  (max-width: 768px) {
     body.menu-open .main-nav {
@@ -361,12 +422,6 @@ canvas {
     
 }
 
-/* small screen */
-
-@media  (min-width: 480px) {
-    
-}
-
 /* medium screen */
 
 @media  (min-width: 768px) {
@@ -375,29 +430,32 @@ canvas {
     }
 
     .meme-editor > .grid-container  {
-        grid-template-columns: repeat(4, 1fr);
-        grid-template-rows: 100%;
+        grid-template-columns: repeat(10, 1fr);
+        grid-template-rows: repeat(10, 1fr);
     }
     .canvas-container {
-        justify-content: center;
-        grid-column: 1/4;
-        grid-row: 1/2;
+        position: relative;
+        justify-content: space-around;
+        grid-column: 2/7;
+        grid-row: 1/10;
     }
     
     .actions-container {
-        grid-column: 4 / 5;
-        grid-row: 1/2;
+        position: absolute;
+        right: 0;
+        width: 30%;
         max-width: 300px;
+        height: 100%;
     }
 
     .canvas-tools {
         position: absolute;
         padding: 0.3em 1em;
-        flex-direction: row;
+        flex-direction: column;
         top: 0;
     }
     .header-container {
-        padding: 0 0 0 5px;
+        padding: 0 0 0 1em;
     }
 
     .main-nav {
@@ -432,5 +490,20 @@ canvas {
 @media  (min-width: 1024px) {
     .canvas-tools {
         padding: 0.3em 3em;
+    }
+    .canvas-container {
+        grid-column: 3/7;
+    }
+    .canvas-tools {
+        flex-direction: row;
+    }
+}
+
+@media  (min-width: 1248px) {
+    .main-layout {
+        max-width: 1248px;
+    }
+    .canvas-container {
+        grid-column: 3/8;
     }
 }

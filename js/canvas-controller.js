@@ -66,25 +66,20 @@ function addTouchListeners() {
 
 function onDown(ev) {
     const pos = getEvPos(ev);
-    // console.log("click");
-    // if (!isLineClicked(getLineIdx(), pos)) return;
-
     const txtLines = getLines();
-    // console.log(txtLines);
+
     txtLines.map((line , idx) => {
-        // console.log(line);
         if (!isLineClicked(idx, pos)) return
 
         setSelectedLine(idx);
         setLineDrag(idx, true);
         gElCanvas.style.cursor = "grabbing";
         gStartPos = pos;
-        drawFocus();
+        renderMeme()
+        // drawFocus();
 
         document.querySelector('.canvas-tools .text-input').value = line.txt;
     })
-    
-
 }
 
 function onMove(ev) {

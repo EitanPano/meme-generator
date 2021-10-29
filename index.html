@@ -26,7 +26,7 @@
         </div>
     </header>
 
-    <main class="main-layout meme-editor hidden">
+    <main class=".main-layout meme-editor hidden">
         <div class="grid-container">
             <div class="canvas-container flex align-center justify-center">
                 <canvas>
@@ -35,21 +35,36 @@
 
                 <div class="canvas-tools flex justify-center align-center">
                     <div class="box2 flex">
-                        <input class="text-input" type="text" placeholder="Text Line Here" onkeyup="onTxtChange(this.value)">
+                        <input class="text-input" type="text" placeholder="Text Line Here"
+                            onkeyup="onTxtChange(this.value)">
                     </div>
                     <div class="box1 flex">
                         <button class="btn" onclick="onTxtBigger()">A+</button>
                         <button class="btn" onclick="onTxtSmaller()">A-</button>
                         <button class="btn" onclick="onTxtHigher()">A⬆</button>
                         <button class="btn" onclick="onTxtLower()">A⬇</button>
-                        <button class="btn" onclick="onTxtRemove()">DEL</button>
+                        <button class="btn btn-delete icons" onclick="onTxtRemove()"></button>
+                    </div>
+                    <div class="box3 flex">
+                        <button class="btn icons btn-align-left" onclick="onTxtLeft()"></button>
+                        <button class="btn icons btn-align-center" onclick="onTxtCenter()"></button>
+                        <button class="btn icons btn-align-right" onclick="onTxtRight()"></button>
+
+                        <div class="mask-box">
+                            <input type="color" class="btn" onchange="onTxtStroke(this.value)" />
+                            <button class="btn icons btn-stroke"></button>
+                        </div>
+                        <div class="mask-box">
+                            <input type="color" class="btn" onchange="onTxtFill(this.value)" />
+                            <button class="btn icons btn-palette"></button>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <aside class="actions-container flex">
                 <h2>Options</h2>
-                <button class="btn">Add Text</button>
+                <button class="btn" onclick="onTxtAdd()">Add Text</button>
                 <button class="btn btn-save" onclick="onSaveMeme()">Save Meme</button>
                 <!-- <a class="btn btn-download" href="#" onclick="downloadCanvas(this)" download="mycanvas">Download</a> -->
                 <!-- <button>ABOUT</button> -->
