@@ -24,6 +24,7 @@ function renderGallery(keyword) {
         });
     }
     addClickEvents();
+    resetGMeme();
 }
 
 function onSetSearch(keyword) {
