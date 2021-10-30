@@ -100,16 +100,19 @@ function txtLower(lineIdx = 0) {
     gMeme.lines[lineIdx].pos.y += 2;
 }
 
-function txtLeft(lineIdx = 0) {
-    gMeme.lines[lineIdx].align = 'right';
+function txtLeft(maxWidth, lineIdx = 0) {
+    gMeme.lines[lineIdx].pos.x = maxWidth / 2 - gMeme.lines[lineIdx].width /2;
+    // gMeme.lines[lineIdx].align = 'left';
 }
 
-function txtCenter(lineIdx = 0) {
-    gMeme.lines[lineIdx].align = 'center';
+function txtCenter(maxWidth, lineIdx = 0) {
+    gMeme.lines[lineIdx].pos.x = maxWidth / 2
+    // gMeme.lines[lineIdx].align = 'center';
 }
 
-function txtRight(lineIdx = 0) {
-    gMeme.lines[lineIdx].align = 'left';
+function txtRight(maxWidth, lineIdx = 0) {
+    gMeme.lines[lineIdx].pos.x = maxWidth / 2 + gMeme.lines[lineIdx].width /2;
+    // gMeme.lines[lineIdx].align = 'right';
 }
 
 function txtStroke(lineIdx = 0, color) {
@@ -130,6 +133,11 @@ function getMeme() {
     return gMeme;
 }
 
+function removeLine() {
+    if (!gMeme.lines.length) return console.log('No lines, Add Text.')
+    gMeme.lines.splice(gMeme.selectedLineIdx, 1);
+}
+
 function _createImg(url) {
     const img = {
         id: gId + 1,
@@ -141,10 +149,6 @@ function _createImg(url) {
     return img;
 }
 
-function removeLine() {
-    if (!gMeme.lines.length) return console.log('No lines, Add Text.')
-    gMeme.lines.splice(gMeme.selectedLineIdx, 1);
-}
 
 function _saveImgsToStorage() {
     saveToStorage(IMGS_KEY, gImgs);
@@ -155,6 +159,7 @@ function getImgs() {
 }
 
 function getCurrLine() {
+    if (!gMeme.lines[gMeme.selectedLineIdx]) return gMeme.lines[0]
     return gMeme.lines[gMeme.selectedLineIdx];
 }
 
@@ -163,7 +168,7 @@ function getLineIdx() {
 }
 
 function getLines() {
-    return gMeme.lines;
+    return gMeme.lines ? gMeme.lines : console.log('No lines, add text.');
 }
 
 function isLineClicked(lineIdx, clickedPos) {
@@ -179,6 +184,7 @@ function isLineClicked(lineIdx, clickedPos) {
 }
 
 function setLineDrag(lineIdx, isDrag) {
+    if (!gMeme.lines.length) return;
     gMeme.lines[lineIdx].isDrag = isDrag;
 }
 

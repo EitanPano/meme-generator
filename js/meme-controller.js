@@ -130,17 +130,18 @@ function onTxtLower() {
 }
 
 function onTxtLeft() {
-    txtLeft(getLineIdx());
+    txtLeft(gElCanvas.width, getLineIdx());
+    drawFocus()
     renderMeme()
 }
 
 function onTxtCenter() {
-    txtCenter(getLineIdx());
+    txtCenter(gElCanvas.width, getLineIdx());
     renderMeme()
 }
 
 function onTxtRight() {
-    txtRight(getLineIdx());
+    txtRight(gElCanvas.width, getLineIdx());
     renderMeme()
 }
 

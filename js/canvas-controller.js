@@ -31,7 +31,7 @@ function drawText(txtLine) {
 }
 
 function drawFocus() {
-    const selectedLine = gMeme.lines[gMeme.selectedLineIdx];
+    const selectedLine = getCurrLine();
     if (!selectedLine) return;
     const { pos } = selectedLine;
     gCtx.beginPath();
@@ -76,14 +76,13 @@ function onDown(ev) {
         gElCanvas.style.cursor = "grabbing";
         gStartPos = pos;
         renderMeme()
-        // drawFocus();
-
         document.querySelector('.canvas-tools .text-input').value = line.txt;
     })
 }
 
 function onMove(ev) {
     const line = getCurrLine();
+    if (!line) return;
 
     if (line.isDrag) {
         const pos = getEvPos(ev);
@@ -91,8 +90,8 @@ function onMove(ev) {
         const dy = pos.y - gStartPos.y;
         gStartPos = pos;
         moveLine(dx, dy, getLineIdx());
-        renderMeme();
         drawFocus()
+        renderMeme();
     }
 }
 
