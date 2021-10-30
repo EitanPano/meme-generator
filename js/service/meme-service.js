@@ -155,6 +155,12 @@ function _createImg(url, keywords) {
     return img;
 }
 
+function getUrlByTag(img, word) {
+    const keywords = img.keywords;
+    if (!keywords) return;
+    const keywordsStr = keywords.toString();
+    if (keywordsStr.includes(word.toLowerCase())) return `${img.url}`;
+}
 
 function _saveImgsToStorage() {
     saveToStorage(IMGS_KEY, gImgs);

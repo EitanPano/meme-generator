@@ -287,16 +287,42 @@ main {
     transition: all 0.2s;
 }
 
-.gallery .search {
+.gallery .search-box {
+    margin: 0 0 1em 2em;
+    display: flex;
+}
+
+.gallery .search-input {
+    margin: 0;
     font-size: 1.1em;
     border: 0.3em solid rgba(150, 150, 150, 0.5);
     border-radius: 0.3em;
     max-width: 200px;
-    margin: 0 0 1em 2em;
     transition: all 0.2s;
 }
 
-.gallery .search:focus {
+.gallery .search-label {
+    background-image: url(../icons/search.svg);
+    background-size: 80%;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 2.1em;
+    height: 2.1em;
+    border: 0.2em solid rgba(150, 150, 150, 0.5);
+    border-radius: 0.3em;
+    background-color: rgb(59, 150, 255);
+    color: white;
+
+    transition: all 0.3s;
+}
+
+.gallery .search-label:hover {
+    background-color: rgb(137, 226, 255);
+    cursor: pointer;
+}
+
+.gallery .search-input:focus {
     border-color: rgb(59, 150, 255) ;
     outline: none;
 }
@@ -437,7 +463,7 @@ canvas {
 }
 
 .canvas-tools .btn-delete:hover {
-    background-color: rgb(255, 0, 0);
+    background-color: rgba(255, 0, 0, 0.3);
 }
 
 .canvas-tools .btn-align-left {

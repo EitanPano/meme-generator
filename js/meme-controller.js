@@ -8,11 +8,10 @@ const elGallery = document.querySelector(".gallery");
 const elMyMemesGrid = document.querySelector(".my-memes .grid-container");
 const elMyMemes = document.querySelector(".my-memes");
 
-function renderGallery(word) {
+function renderGallery(keyword) {
     const imgs = getImgs();
 
-    if (word) console.log(word);
-    if (!word) {
+    if (!keyword) {
         elGalleryGrid.innerHTML = "";
         imgs.map((img) => {
             loadImage(img.url, elGalleryGrid);
@@ -21,7 +20,7 @@ function renderGallery(word) {
     } else {
         elGalleryGrid.innerHTML = "";
         imgs.map((img) => {
-            const imgUrl = getUrlByTag(img, word);
+            const imgUrl = getUrlByTag(img, keyword);
             if (!imgUrl) return;
             loadImage(imgUrl, elGalleryGrid);
         });
@@ -29,11 +28,8 @@ function renderGallery(word) {
     }
 }
 
-function getUrlByTag(img, word) {
-    const keywords = img.keywords;
-    if (!keywords) return;
-    const keywordsStr = keywords.toString();
-    if (keywordsStr.includes(word.toLowerCase())) return `${img.url}`;
+function onSetSearch(keyword) {
+    renderGallery(keyword)
 }
 
 function loadImage(url, el) {
