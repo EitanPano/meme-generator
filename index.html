@@ -34,18 +34,27 @@
                 </canvas>
 
                 <div class="canvas-tools flex justify-center align-center">
-                    <div class="box2 flex">
+                    <!-- <div class="box2 flex">
+                        
+                    </div> -->
+                    <div class="box1 flex">
+                        <select name="txtFont" id="" onchange="onSetTxtFont(this.value)">
+                            <option value="Impact">Impact</option>
+                            <option value="Arial">Arial</option>
+                            <option value="Tahoma">Tahoma</option>
+                            <option value="Georgia">Georgia</option>
+                            <option value="Garamond">Garamond</option>
+                        </select>
                         <input class="text-input" type="text" placeholder="Text Line Here"
                             onkeyup="onTxtChange(this.value)">
-                    </div>
-                    <div class="box1 flex">
-                        <button class="btn" onclick="onTxtBigger()">A+</button>
-                        <button class="btn" onclick="onTxtSmaller()">A-</button>
-                        <button class="btn" onclick="onTxtHigher()">A⬆</button>
-                        <button class="btn" onclick="onTxtLower()">A⬇</button>
+
+                        <!-- <button class="btn" onclick="onTxtHigher()">A⬆</button>
+                        <button class="btn" onclick="onTxtLower()">A⬇</button> -->
                         <button class="btn btn-delete icons" onclick="onTxtRemove()"></button>
                     </div>
-                    <div class="box3 flex">
+                    <div class="box2 flex">
+                        <button class="btn" onclick="onTxtBigger()">A+</button>
+                        <button class="btn" onclick="onTxtSmaller()">A-</button>
                         <button class="btn icons btn-align-left" onclick="onTxtLeft()"></button>
                         <button class="btn icons btn-align-center" onclick="onTxtCenter()"></button>
                         <button class="btn icons btn-align-right" onclick="onTxtRight()"></button>
@@ -64,8 +73,8 @@
 
             <aside class="actions-container flex">
                 <h2>Options</h2>
-                <button class="btn" onclick="onTxtAdd()">Add Text</button>
-                <button class="btn btn-save" onclick="onSaveMeme()">Save Meme</button>
+                <button class="btn btn-add icons" onclick="onTxtAdd()">Add Text</button>
+                <button class="btn btn-save icons" onclick="onSaveMeme()">Save Meme</button>
                 <!-- <a class="btn btn-download" href="#" onclick="downloadCanvas(this)" download="mycanvas">Download</a> -->
                 <!-- <button>ABOUT</button> -->
                 <!-- <input type="file" class="file-input" name="image" onchange="onImgInput(event)" /> -->
@@ -77,12 +86,23 @@
     </main>
 
     <section id="gallery" class="main-layout gallery">
+        <form action="" autocomplete="off">
+            <input type="search" list="key-words" class="search" name="search" placeholder="Search By Tags" onkeyup="renderGallery(this.value)"/>
+            <datalist id="key-words">
+                <option value="Cute"></option>
+                <option value="Happy"></option>
+                <option value="Politics"></option>
+                <option value="Movies"></option>
+                <option value="Celeb"></option>
+            </datalist>
+        </form>
+
         <div class="grid-container">
             <!-- js render here -->
         </div>
     </section>
 
-    <section id="my-memes" class="main-layout my-memes">
+    <section id="my-memes" class="main-layout my-memes hidden">
         <div class="grid-container">
             <!-- js render here -->
         </div>

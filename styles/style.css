@@ -14,6 +14,7 @@
 
 html {
     font-family: roboto;
+    font-size: 16px;
 }
 
 body {
@@ -50,13 +51,15 @@ button {
 
 input {
     height: 2em;
+    margin: 0 0.3em;
 }
 
 input[type=text] {
     font-size: 1em;
     border: 0.3em solid rgba(150, 150, 150, 0.5);
     border-radius: 0.3em;
-
+    /* max-width: 150px; */
+    width: 100%;
     transition: all 0.2s;
 }
 
@@ -70,6 +73,19 @@ input[type=color] {
     height: 2em;
     width: 2em;
     cursor: pointer;
+}
+
+select {
+    font-size: 1em;
+    border: 0.3em solid rgba(150, 150, 150, 0.5);
+    border-radius: 0.3em;
+    margin: 0 0.3em;
+    transition: all 0.2s;
+}
+
+select:focus {
+    border-color: rgb(59, 150, 255);
+    outline: 0;
 }
 
 main {
@@ -236,8 +252,8 @@ main {
 
 /* gallery */
 
-.gallery {
-    margin-top: 95px;
+.gallery, .my-memes {
+    margin-top: 5.5em;
     transition: all 0.5s;
 }
 
@@ -279,6 +295,7 @@ main {
 }
 
 .hidden {
+    margin: 0;
     height: 0;
     opacity: 0;
     overflow: hidden;
@@ -299,14 +316,29 @@ main {
     grid-column: 2/8;
     grid-row: 2/7;
     margin-right: 10px;
-    width: 100%;
-    height: 100%;
+    /* width: 100%; */
+    /* height: 100%; */
 }
 
 canvas {
     background-color: aliceblue;
     outline: 1px solid black;
     cursor: grab;
+}
+
+.btn {
+    min-width: 2em;
+    height: 2em;
+    font-weight: bold;
+    font-size: 1em;
+    transition: all 0.2s;
+    /* padding: 5px; */
+}
+
+.icons {
+    background-size:65%;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 /* actions */
@@ -321,25 +353,50 @@ canvas {
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.4);
 }
 
+.actions-container .btn {
+    margin: 0.3em;
+    border: 0;
+    background-color: rgba(0, 70, 255, 0.6);
+    color: white;
+    border-radius: 0.3em;
+    
+    transition: all 0.3s;
+}
+
+.actions-container .btn:hover {
+    background-color: rgba(255, 255, 255, 0.815);
+    box-shadow: inset 0 0 0 2px rgba(0, 70, 255, 0.6);
+    color: rgba(0, 70, 255, 0.6);
+    /* color: rgb(103, 151, 255); */
+}
+
+.actions-container .icons {
+    background-size: 2em;
+    background-position: 10%;
+    height: 2.5em;
+}
+
+.actions-container .btn-save{
+    background-image: url(../icons/gallery.png);
+}
+
+.actions-container .btn-add{
+    background-image: url(../icons/plus-circle.svg);
+}
+
+/* canvas tools */
 .canvas-tools {
     position: absolute;
-    grid-row: 1/2;
-    grid-column: 8/8;
     top: 4em;
+    left: 0;
+    right: 0;
+    max-width: 450px;
+    margin: 0 auto;
     flex-direction: column;
     padding: 0.5em;
     border-radius: 10px;
     background-color: azure;
     box-shadow: 0 0.3em 1em 0 rgba(0, 0, 0, 0.4);
-}
-
-.btn {
-    min-width: 2em;
-    height: 2em;
-    font-weight: bold;
-    font-size: 1em;
-    transition: all 0.2s;
-    /* padding: 5px; */
 }
 
 .canvas-tools .btn {
@@ -353,12 +410,6 @@ canvas {
 .canvas-tools .btn:hover {
     background-color: white;
     color: rgb(59, 150, 255);
-}
-
-.icons {
-    background-size:65%;
-    background-position: center;
-    background-repeat: no-repeat;
 }
 
 .canvas-tools .btn-delete{
@@ -404,12 +455,6 @@ canvas {
 
 /* small screen */
 
-@media  (max-width: 480px) {
-    .canvas-container {
-        grid-row: 3/7;
-    }
-}
-
 @media  (max-width: 768px) {
     body.menu-open .main-nav {
         pointer-events: all;
@@ -442,10 +487,11 @@ canvas {
     
     .actions-container {
         position: absolute;
+        top: 5.5em;
         right: 0;
         width: 30%;
         max-width: 300px;
-        height: 100%;
+        height: calc(100% - 5.5em);
     }
 
     .canvas-tools {
@@ -488,14 +534,20 @@ canvas {
 /* large screen */
 
 @media  (min-width: 1024px) {
+    input[type=text] {
+        min-width: 150px;
+    }
     .canvas-tools {
-        padding: 0.3em 3em;
+        padding: 0.3em 1.5em;
     }
     .canvas-container {
         grid-column: 3/7;
     }
     .canvas-tools {
         flex-direction: row;
+        left: initial;
+        right: initial;
+        max-width: none;
     }
 }
 

@@ -19,31 +19,31 @@ function _createImgs() {
     let imgs = loadFromStorage(IMGS_KEY);
     if (!imgs || !imgs.length) {
         imgs = [
-            _createImg("img/1.jpg"),
-            _createImg("img/2.jpg"),
-            _createImg("img/3.jpg"),
-            _createImg("img/4.jpg"),
-            _createImg("img/5.jpg"),
-            _createImg("img/6.jpg"),
-            _createImg("img/7.jpg"),
-            _createImg("img/8.jpg"),
-            _createImg("img/9.jpg"),
-            _createImg("img/10.jpg"),
-            _createImg("img/11.jpg"),
-            _createImg("img/12.jpg"),
-            _createImg("img/13.jpg"),
-            _createImg("img/14.jpg"),
-            _createImg("img/15.jpg"),
-            _createImg("img/16.jpg"),
-            _createImg("img/17.jpg"),
-            _createImg("img/18.jpg"),
-            _createImg("img/19.jpg"),
-            _createImg("img/20.jpg"),
-            _createImg("img/21.jpg"),
-            _createImg("img/22.jpg"),
-            _createImg("img/23.jpg"),
-            _createImg("img/24.jpg"),
-            _createImg("img/25.jpg"),
+            _createImg("img/1.jpg", ['happy', 'goods', 'thanks']),
+            _createImg("img/2.jpg", ['funny', 'politics', 'celeb', 'stupid', 'trump']),
+            _createImg("img/3.jpg", ['cute', 'happy', 'dogs']),
+            _createImg("img/4.jpg", ['cute', 'baby', 'dogs']),
+            _createImg("img/5.jpg", ['cute', 'baby', 'win', 'yes']),
+            _createImg("img/6.jpg", ['cute', 'cat', 'sleepy', 'tired']),
+            _createImg("img/7.jpg", ['funny', 'movies', 'celeb']),
+            _createImg("img/8.jpg", ['cute', 'baby', 'win', 'evil']),
+            _createImg("img/9.jpg", ['funny', 'celeb', 'you', 'caught']),
+            _createImg("img/10.jpg", ['funny', 'movies', 'celeb', 'why', 'angry', 'you see']),
+            _createImg("img/11.jpg", ['funny', 'movies', 'celeb', 'idk', 'maybe']),
+            _createImg("img/12.jpg", ['evil', 'mini', 'peace', 'bold']),
+            _createImg("img/13.jpg", ['happy', 'sad', 'dance', 'poor']),
+            _createImg("img/14.jpg", ['funny', 'politics', 'celeb', 'stupid', 'trump', 'angry']),
+            _createImg("img/15.jpg", ['cute', 'baby', 'surprise', 'really']),
+            _createImg("img/16.jpg", ['cute', 'dog', 'stupid', 'tired']),
+            _createImg("img/17.jpg", ['funny', 'movies', 'celeb', 'obama']),
+            _createImg("img/18.jpg", ['funny', 'sport', 'celeb', 'kiss', 'gay', 'bro']),
+            _createImg("img/19.jpg", ['funny', 'movies', 'celeb', 'cheers', 'leonardo dicaprio']),
+            _createImg("img/20.jpg", ['funny', 'movies', 'celeb', 'morpheus', 'laurence fishburne', 'matrix', 'angry']),
+            _createImg("img/21.jpg", ['funny', 'politics', 'game of thrones', 'dead']),
+            _createImg("img/22.jpg", ['funny', 'politics', 'oprah winfrey', 'win']),
+            _createImg("img/23.jpg", ['funny', 'stupid', 'celeb', 'no way', 'star trek']),
+            _createImg("img/24.jpg", ['angry', 'politics', 'not funny', 'putin', 'bad', 'two']),
+            _createImg("img/25.jpg", ['funny', 'movies', 'toy story', 'yours', 'you see']),
         ];
     }
     gImgs = imgs;
@@ -80,47 +80,53 @@ function loadSavedMemes() {
     gSavedMemes = savedMemes;
 }
 
-function txtChange(txt, lineIdx = 0) {
-    gMeme.lines[lineIdx].txt = txt;
+function txtChange(txt) {
+    gMeme.lines[gMeme.selectedLineIdx].txt = txt;
 }
 
-function txtBigger(lineIdx = 0) {
-    gMeme.lines[lineIdx].size += 2;
+function txtBigger() {
+    gMeme.lines[gMeme.selectedLineIdx].size += 2;
 }
 
-function txtSmaller(lineIdx = 0) {
-    gMeme.lines[lineIdx].size -= 2;
+function txtSmaller() {
+    gMeme.lines[getLineIdx()].size -= 2;
 }
 
-function txtHigher(lineIdx = 0) {
-    gMeme.lines[lineIdx].pos.y -= 2;
+function setTxtFont(val) {
+    gMeme.lines[getLineIdx()].font = val;
 }
 
-function txtLower(lineIdx = 0) {
-    gMeme.lines[lineIdx].pos.y += 2;
-}
+// ASK FOR PREFERENCE
 
-function txtLeft(maxWidth, lineIdx = 0) {
-    gMeme.lines[lineIdx].pos.x = maxWidth / 2 - gMeme.lines[lineIdx].width /2;
+// function txtHigher(lineIdx = 0) {
+//     gMeme.lines[lineIdx].pos.y -= 2;
+// }
+
+// function txtLower(lineIdx = 0) {
+//     gMeme.lines[lineIdx].pos.y += 2;
+// }
+
+function txtLeft(maxWidth) {
+    gMeme.lines[gMeme.selectedLineIdx].pos.x = maxWidth / 2 - gMeme.lines[gMeme.selectedLineIdx].width /2;
     // gMeme.lines[lineIdx].align = 'left';
 }
 
-function txtCenter(maxWidth, lineIdx = 0) {
-    gMeme.lines[lineIdx].pos.x = maxWidth / 2
+function txtCenter(maxWidth) {
+    gMeme.lines[gMeme.selectedLineIdx].pos.x = maxWidth / 2
     // gMeme.lines[lineIdx].align = 'center';
 }
 
-function txtRight(maxWidth, lineIdx = 0) {
-    gMeme.lines[lineIdx].pos.x = maxWidth / 2 + gMeme.lines[lineIdx].width /2;
+function txtRight(maxWidth) {
+    gMeme.lines[gMeme.selectedLineIdx].pos.x = maxWidth / 2 + gMeme.lines[gMeme.selectedLineIdx].width /2;
     // gMeme.lines[lineIdx].align = 'right';
 }
 
-function txtStroke(lineIdx = 0, color) {
-    gMeme.lines[lineIdx].stroke = `${color}`;
+function txtStroke(color) {
+    gMeme.lines[getLineIdx()].stroke = `${color}`;
 }
 
-function txtFill(lineIdx = 0, color) {
-    gMeme.lines[lineIdx].fill = `${color}`;
+function txtFill(color) {
+    gMeme.lines[getLineIdx()].fill = `${color}`;
 }
 
 function switchFocus() {
@@ -138,11 +144,11 @@ function removeLine() {
     gMeme.lines.splice(gMeme.selectedLineIdx, 1);
 }
 
-function _createImg(url) {
+function _createImg(url, keywords) {
     const img = {
         id: gId + 1,
         url,
-        keywords: ["happy"],
+        keywords: keywords,
     };
 
     gId++;
@@ -164,6 +170,7 @@ function getCurrLine() {
 }
 
 function getLineIdx() {
+    if (!gMeme.lines.length) return null;
     return gMeme.selectedLineIdx;
 }
 
@@ -195,4 +202,8 @@ function moveLine(dx, dy, lineIdx) {
 
 function setSelectedLine(idx) {
     gMeme.selectedLineIdx = idx;
+}
+
+function noLinesError() {
+    console.log('No lines, add text please.')
 }

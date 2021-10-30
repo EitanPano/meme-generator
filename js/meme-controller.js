@@ -8,12 +8,33 @@ const elGallery = document.querySelector(".gallery");
 const elMyMemesGrid = document.querySelector(".my-memes .grid-container");
 const elMyMemes = document.querySelector(".my-memes");
 
-function renderGallery() {
+function renderGallery(word) {
     const imgs = getImgs();
-    imgs.map((img) => {
-        loadImage(img.url, elGalleryGrid);
-    });
+
+    if (word) console.log(word);
+    if (!word) {
+        elGalleryGrid.innerHTML = '';
+        imgs.map((img) => {
+            loadImage(img.url, elGalleryGrid);
+        });
+    } else {
+        elGalleryGrid.innerHTML = '';
+        imgs.map((img) => {
+            const imgUrl = getUrlByTag(img, word);
+            if (!imgUrl) return;
+            loadImage(imgUrl, elGalleryGrid);
+        });
+    }
 }
+
+function getUrlByTag(img, word) {
+    const keywords = img.keywords
+    if (!keywords) return
+    const keywordsStr = keywords.toString()
+    console.log(keywordsStr);
+    if (keywordsStr.includes(word.toLowerCase())) return `${img.url}`;
+}
+
 function loadImage(url, el) {
     const imgSrc = url;
     const img = new Image();
@@ -40,16 +61,16 @@ function onMoveToMyMemes(ev) {
     ev.preventDefault();
 
     let myMemes = loadFromStorage(SAVED_MEMES);
-    if (!myMemes) return console.log('Storage Empty');
+    if (!myMemes) return console.log("Storage Empty");
     const strHTMLS = myMemes.map((meme) => {
-        return `<img src="${meme.url}" class="square">`
+        return `<img src="${meme.url}" class="square">`;
     });
 
     elMemeEditor.classList.add("hidden");
     elMyMemes.classList.remove("hidden");
     elGallery.classList.add("hidden");
 
-    elMyMemesGrid.innerHTML = strHTMLS.join('');
+    elMyMemesGrid.innerHTML = strHTMLS.join("");
 }
 
 function addClickEvents() {
@@ -57,7 +78,7 @@ function addClickEvents() {
         const elImgs = document.querySelectorAll(
             ".gallery .grid-container img"
         );
-        console.log('Imgs are now loaded');
+        console.log("Imgs are now loaded");
         elImgs.forEach((img) => {
             img.addEventListener("click", () => {
                 onSelectMeme(img);
@@ -76,23 +97,23 @@ function onSelectMeme(img) {
 
     setCanvas();
     renderImg(selectedImg);
-    const top = { x: gElCanvas.width / 2, y: 50};
-    const bottom = { x: gElCanvas.width / 2, y: gElCanvas.height - 20};
-    createTxtLine('Enter Text Here', top);
-    createTxtLine('Enter Text Here', bottom);
+    const top = { x: gElCanvas.width / 2, y: 50 };
+    const bottom = { x: gElCanvas.width / 2, y: gElCanvas.height - 20 };
+    createTxtLine("Enter Text Here", top);
+    createTxtLine("Enter Text Here", bottom);
     drawText(gMeme.lines[0]);
     drawText(gMeme.lines[1]);
 }
 
 // options
 function onTxtAdd() {
-    const center = { x: gElCanvas.width / 2, y: gElCanvas.height / 2};
-    createTxtLine('Enter Text Here', center);
+    const center = { x: gElCanvas.width / 2, y: gElCanvas.height / 2 };
+    createTxtLine("Enter Text Here", center);
     renderMeme();
 }
 
 function onSaveMeme() {
-    const newMeme = gElCanvas.toDataURL('image/jpeg');
+    const newMeme = gElCanvas.toDataURL("image/jpeg");
     saveMeme(newMeme);
     saveToStorage(SAVED_MEMES, gSavedMemes);
     console.log("Saved");
@@ -105,60 +126,80 @@ function onTxtRemove() {
 }
 
 function onTxtChange(val) {
-    txtChange(val, getLineIdx());
+    if (getLineIdx() === null) {
+        const center = { x: gElCanvas.width / 2, y: gElCanvas.height / 2 };
+        createTxtLine(val, center);
+    }
+    txtChange(val);
     renderMeme();
 }
 
 function onTxtBigger() {
-    txtBigger(getLineIdx());
+    if (getLineIdx() === null) return;
+    txtBigger();
     renderMeme();
 }
 
 function onTxtSmaller() {
-    txtSmaller(getLineIdx());
+    if (getLineIdx() === null) return;
+    txtSmaller();
     renderMeme();
 }
 
-function onTxtHigher() {
-    txtHigher(getLineIdx());
+function onSetTxtFont(val) {
+    if (getLineIdx() === null) return;
+    setTxtFont(val);
+    console.log(val);
     renderMeme();
 }
 
-function onTxtLower() {
-    txtLower(getLineIdx());
-    renderMeme();
-}
+// ASK FOR PREFERENCE
+
+// function onTxtHigher() {
+//     txtHigher(getLineIdx());
+//     renderMeme();
+// }
+
+// function onTxtLower() {
+//     txtLower(getLineIdx());
+//     renderMeme();
+// }
 
 function onTxtLeft() {
-    txtLeft(gElCanvas.width, getLineIdx());
-    drawFocus()
-    renderMeme()
+    if (getLineIdx() === null) return;
+    txtLeft(gElCanvas.width);
+    drawFocus();
+    renderMeme();
 }
 
 function onTxtCenter() {
-    txtCenter(gElCanvas.width, getLineIdx());
-    renderMeme()
+    if (getLineIdx() === null) return;
+    txtCenter(gElCanvas.width);
+    renderMeme();
 }
 
 function onTxtRight() {
-    txtRight(gElCanvas.width, getLineIdx());
-    renderMeme()
+    if (getLineIdx() === null) return;
+    txtRight(gElCanvas.width);
+    renderMeme();
 }
 
 function onTxtStroke(color) {
-    txtStroke(getLineIdx(), color);
-    renderMeme()
+    if (getLineIdx() === null) return;
+    txtStroke(color);
+    renderMeme();
 }
 
 function onTxtFill(color) {
-    txtFill(getLineIdx(), color);
-    renderMeme()
+    if (getLineIdx() === null) return;
+    txtFill(color);
+    renderMeme();
 }
 
 function renderMeme() {
     gCtx.drawImage(gMeme.selectedImg, 0, 0, gElCanvas.width, gElCanvas.height);
-    if (!gMeme.lines) return console.log('gMeme has no lines');
-    gMeme.lines.forEach(line => drawText(line));
+    if (!gMeme.lines) return console.log("gMeme has no lines");
+    gMeme.lines.forEach((line) => drawText(line));
     drawFocus();
 }
 

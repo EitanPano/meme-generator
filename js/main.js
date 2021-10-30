@@ -6,7 +6,6 @@ function onInit() {
     addClickEvents();
     addListeners();
 
-    // getShapes();
     console.log("Working");
 }
 
