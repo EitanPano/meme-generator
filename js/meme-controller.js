@@ -10,13 +10,11 @@ const elMyMemes = document.querySelector(".my-memes");
 
 function renderGallery(keyword) {
     const imgs = getImgs();
-
     if (!keyword) {
         elGalleryGrid.innerHTML = "";
         imgs.map((img) => {
             loadImage(img.url, elGalleryGrid);
         });
-        addClickEvents();
     } else {
         elGalleryGrid.innerHTML = "";
         imgs.map((img) => {
@@ -24,12 +22,12 @@ function renderGallery(keyword) {
             if (!imgUrl) return;
             loadImage(imgUrl, elGalleryGrid);
         });
-        addClickEvents();
     }
+    addClickEvents();
 }
 
 function onSetSearch(keyword) {
-    renderGallery(keyword)
+    renderGallery(keyword);
 }
 
 function loadImage(url, el) {
@@ -52,6 +50,8 @@ function onMoveToGallery(ev) {
     elMemeEditor.classList.add("hidden");
     elMyMemes.classList.add("hidden");
     elGallery.classList.remove("hidden");
+
+    resetGMeme();
 }
 
 function onMoveToMyMemes(ev) {
@@ -66,7 +66,6 @@ function onMoveToMyMemes(ev) {
     elMemeEditor.classList.add("hidden");
     elMyMemes.classList.remove("hidden");
     elGallery.classList.add("hidden");
-
     elMyMemesGrid.innerHTML = strHTMLS.join("");
 }
 
@@ -82,7 +81,7 @@ function addClickEvents() {
                 document.documentElement.scrollTop = 0;
             });
         });
-    }, 50);
+    }, 500);
 }
 
 function onSelectMeme(img) {
@@ -114,6 +113,13 @@ function onSaveMeme() {
     saveMeme(newMeme);
     saveToStorage(SAVED_MEMES, gSavedMemes);
     console.log("Saved");
+}
+
+function onDownloadMeme(ev) {
+    var button = document.querySelector(".btn-download");
+
+    var dataURL = gElCanvas.toDataURL("image/jpg");
+    button.href = dataURL;
 }
 
 // Toolbox
@@ -149,18 +155,6 @@ function onSetTxtFont(val) {
     console.log(val);
     renderMeme();
 }
-
-// ASK FOR PREFERENCE
-
-// function onTxtHigher() {
-//     txtHigher(getLineIdx());
-//     renderMeme();
-// }
-
-// function onTxtLower() {
-//     txtLower(getLineIdx());
-//     renderMeme();
-// }
 
 function onTxtLeft() {
     if (getLineIdx() === null) return;

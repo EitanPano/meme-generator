@@ -72,13 +72,12 @@
             </div>
 
             <aside class="actions-container flex">
-                <h2>Options</h2>
                 <button class="btn btn-add icons" onclick="onTxtAdd()">Add Text</button>
                 <button class="btn btn-save icons" onclick="onSaveMeme()">Save Meme</button>
-                <!-- <a class="btn btn-download" href="#" onclick="downloadCanvas(this)" download="mycanvas">Download</a> -->
+                <a class="btn btn-download icons flex align-center" href="#" onclick="onDownloadMeme(event)"
+                    download="mymeme.jpg">Download</a>
                 <!-- <button>ABOUT</button> -->
                 <!-- <input type="file" class="file-input" name="image" onchange="onImgInput(event)" /> -->
-                <!-- <button class="" onclick="uploadImg()">UPLOAD</button> -->
                 <!-- <p class="user-msg"></p> -->
                 <!-- <div class="share-container"></div> -->
             </aside>
@@ -86,20 +85,23 @@
     </main>
 
     <section id="gallery" onsubmit="event.preventDefault()" class="main-layout gallery">
-        <form action="" autocomplete="off">
-            <div class="search-box">
-                <label for="search-input" class="search-label"></label>
-                <input id="search-input" type="search" list="key-words" class="search-input" name="search"
-                    placeholder="Search By Tags" onkeyup="onSetSearch(this.value)" />
-            </div>
-            <datalist id="key-words">
-                <option value="Cute"></option>
-                <option value="Happy"></option>
-                <option value="Politics"></option>
-                <option value="Movies"></option>
-                <option value="Celeb"></option>
-            </datalist>
-        </form>
+        <div class="selection-line flex space-around align-center">
+            <form action="" autocomplete="off">
+                <div class="search-box">
+                    <label for="search-input" class="search-label"></label>
+                    <input id="search-input" type="search" list="key-words" class="search-input" name="search"
+                        placeholder="Search By Tags" onkeyup="onSetSearch(this.value)" />
+                </div>
+                <datalist id="key-words">
+                    <option value="Cute"></option>
+                    <option value="Happy"></option>
+                    <option value="Politics"></option>
+                    <option value="Movies"></option>
+                    <option value="Celeb"></option>
+                </datalist>
+            </form>
+            <input type="file" class="btn btn-upload" onclick="uploadImg()"></button>
+        </div>
 
         <div class="grid-container">
             <!-- js render here -->

@@ -22,6 +22,15 @@ body {
     margin: 0;
     padding: 0;
     background-color: gainsboro;
+
+    background: rgb(0, 109, 130);
+    background: radial-gradient(
+        circle,
+        rgba(0, 109, 130, 1) 0%,
+        rgba(49, 121, 142, 1) 27%,
+        rgba(90, 142, 164, 1) 76%,
+        rgba(3, 134, 109, 1) 100%
+    );
 }
 
 h1,
@@ -64,7 +73,7 @@ input[type="text"] {
 }
 
 input[type="text"]:focus {
-    border-color: rgb(59, 150, 255);
+    border-color: rgb(6, 194, 201);
     outline: 0;
 }
 
@@ -84,7 +93,7 @@ select {
 }
 
 select:focus {
-    border-color: rgb(59, 150, 255);
+    border-color: rgb(6, 194, 201);
     outline: 0;
 }
 
@@ -173,7 +182,12 @@ main {
 /* main header */
 
 .main-header {
-    background-color: #fefefe;
+    background: rgb(65, 65, 65);
+    background: linear-gradient(
+        42deg,
+        rgba(65, 65, 65, 1) 0%,
+        rgba(0, 237, 172, 1) 100%
+    );
     box-shadow: 0 0 12px 0 black;
     box-shadow: inset 0 -3px 0 0 rgba(128, 128, 128, 0.5);
     top: 0;
@@ -189,6 +203,7 @@ main {
 /* logo */
 
 .logo {
+    color: white;
     font-family: luckiest_guy;
     font-size: 3em;
     line-height: 1.5em;
@@ -196,8 +211,7 @@ main {
 }
 
 .logo:hover {
-    text-shadow: 0 0 20px black;
-    color: white;
+    text-shadow: 0 0 10px white;
 }
 
 /* hamburger menu */
@@ -206,11 +220,11 @@ main {
     height: 2.5em;
     width: 2.5em;
     font-size: 1em;
-    color: rgb(59, 150, 255);
+    color: rgb(60, 219, 166);
     background-color: #fefefe;
     border: none;
     border-radius: 50%;
-    box-shadow: 0 0 5px 0 rgb(59, 150, 255);
+    box-shadow: 0 0 5px 0 rgb(60, 219, 166);
 }
 
 /* main nav */
@@ -239,15 +253,21 @@ main {
     text-align: center;
     width: 100%;
     box-shadow: inset 0 -3px 0 0 rgba(128, 128, 128, 0.3);
+    color: white;
 
-    background-color: rgba(212, 244, 255, 0.95);
+    background-color: rgba(48, 199, 174, 0.95);
     transition: all 0.3s;
 }
 
 .main-nav li > a:hover {
-    box-shadow: inset 0 -3px 0 0 rgb(59, 150, 255);
-    background-color: white;
-    color: rgba(59, 150, 255, 1);
+    box-shadow: inset 0 -3px 0 0 white;
+    text-shadow: 0 0 20px white;
+}
+
+/* selection line */
+
+.selection-line {
+    margin: 0 0 1em 0;
 }
 
 /* gallery */
@@ -288,7 +308,7 @@ main {
 }
 
 .gallery .search-box {
-    margin: 0 0 1em 2em;
+    /* margin: 0 0 1em 2em; */
     display: flex;
 }
 
@@ -297,7 +317,7 @@ main {
     font-size: 1.1em;
     border: 0.3em solid rgba(150, 150, 150, 0.5);
     border-radius: 0.3em;
-    max-width: 200px;
+    /* max-width: 60%; */
     transition: all 0.2s;
 }
 
@@ -311,7 +331,7 @@ main {
     height: 2.1em;
     border: 0.2em solid rgba(150, 150, 150, 0.5);
     border-radius: 0.3em;
-    background-color: rgb(59, 150, 255);
+    background-color: rgb(60, 219, 166);
     color: white;
 
     transition: all 0.3s;
@@ -323,7 +343,7 @@ main {
 }
 
 .gallery .search-input:focus {
-    border-color: rgb(59, 150, 255) ;
+    border-color: rgb(59, 150, 255);
     outline: none;
 }
 
@@ -394,14 +414,22 @@ canvas {
     grid-column: 1/9;
     grid-row: 7/8;
     flex-direction: column;
-    background-color: white;
+    background: rgb(89, 115, 144);
+    background: linear-gradient(
+        315deg,
+        rgba(89, 115, 144, 1) 0%,
+        rgba(0, 189, 137, 1) 100%
+    );
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.4);
 }
 
 .actions-container .btn {
+    max-width: 140px;
     margin: 0.3em;
+    padding-left: 0.5em;
     border: 0;
-    background-color: rgba(0, 70, 255, 0.6);
+    text-align: start;
+    background-color: rgba(28, 141, 126, 0.911);
     color: white;
     border-radius: 0.3em;
 
@@ -409,24 +437,56 @@ canvas {
 }
 
 .actions-container .btn:hover {
-    background-color: rgba(255, 255, 255, 0.815);
-    box-shadow: inset 0 0 0 2px rgba(0, 70, 255, 0.6);
-    color: rgba(0, 70, 255, 0.6);
+    /* background-color: rgba(255, 255, 255, 0.815); */
+    box-shadow: 0 0 8px 4px white;
+    text-shadow: 0 0 20px white;
     /* color: rgb(103, 151, 255); */
 }
 
 .actions-container .icons {
     background-size: 2em;
-    background-position: 10%;
+    background-position: 95%;
     height: 2.5em;
+}
+
+input[type="file"] {
+    cursor: pointer;
+    max-width: 7.9em;
+    height: 2.5em;
+    overflow: hidden;
+}
+
+input[type="file"]:before {
+    width: 6.5em;
+    line-height: 2em;
+    content: "Upload File";
+    display: inline-block;
+    background: rgb(60, 219, 166);
+    text-align: left;
+    padding: 0 0.5em;
+    border: 0.2em solid rgba(150, 150, 150, 0.5);
+    border-radius: 0.3em;
+    color: white;
+    background-image: url(../icons/upload.svg);
+    background-repeat: no-repeat;
+    background-position: 97%;
+    background-size: 15%;
 }
 
 .actions-container .btn-save {
     background-image: url(../icons/gallery.png);
 }
 
+.actions-container .btn-save::before {
+    background-image: url(../icons/gallery.png);
+}
+
 .actions-container .btn-add {
     background-image: url(../icons/plus-circle.svg);
+}
+
+.actions-container .btn-download {
+    background-image: url(../icons/download.svg);
 }
 
 /* canvas tools */
@@ -440,30 +500,36 @@ canvas {
     flex-direction: column;
     padding: 0.5em;
     border-radius: 10px;
-    background-color: azure;
+    background: rgba(33, 76, 126, 0.8);
+    background: linear-gradient(
+        42deg,
+        rgba(33, 76, 126, 0.8) 0%,
+        rgba(0, 190, 139, 0.8) 100%
+    );
     box-shadow: 0 0.3em 1em 0 rgba(0, 0, 0, 0.4);
 }
 
 .canvas-tools .btn {
     margin: 0 0.3em;
     border: none;
-    background-color: rgb(135, 206, 250);
+    background-color: rgb(103, 207, 164);
     color: white;
+    border-radius: 0.25em;
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.4);
 }
 
 .canvas-tools .btn:hover {
-    background-color: white;
-    color: rgb(59, 150, 255);
+    background-color: rgba(87, 255, 233, 0.849);
+    box-shadow: 0 0 5px 1px white;
 }
 
 .canvas-tools .btn-delete {
     background-image: url(../icons/trash-alt.svg);
-    background-color: rgba(255, 0, 0, 0.692);
+    background-color: rgb(255, 0, 0);
 }
 
 .canvas-tools .btn-delete:hover {
-    background-color: rgba(255, 0, 0, 0.3);
+    background-color: rgba(255, 0, 0, 0.603);
 }
 
 .canvas-tools .btn-align-left {
@@ -491,12 +557,18 @@ canvas {
     margin-top: 20px;
     height: 150px;
     border-top: 3px solid rgba(128, 128, 128, 0.5);
-    background-color: rgba(114, 171, 197, 0.815);
+    background-color: rgba(7, 87, 67, 0.3);
     font-weight: bold;
     color: white;
 }
 
 /* mobile */
+
+@media (max-width: 480px) {
+    .search-box .search-input {
+        width: 100%;
+    }
+}
 
 /* small screen */
 
@@ -531,11 +603,15 @@ canvas {
 
     .actions-container {
         position: absolute;
-        top: 5.5em;
+        top: 6em;
         right: 0;
         width: 30%;
         max-width: 300px;
         height: calc(100% - 5.5em);
+    }
+
+    .actions-container .btn {
+        max-width: initial;
     }
 
     .canvas-tools {

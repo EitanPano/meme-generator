@@ -15,6 +15,8 @@ let gId = 0;
 
 _createImgs();
 
+
+
 function _createImgs() {
     let imgs = loadFromStorage(IMGS_KEY);
     if (!imgs || !imgs.length) {
@@ -212,4 +214,12 @@ function setSelectedLine(idx) {
 
 function noLinesError() {
     console.log('No lines, add text please.')
+}
+
+function resetGMeme() {
+    gMeme = {
+        selectedImg: {},
+        selectedLineIdx: 0,
+        lines: [],
+    };
 }
