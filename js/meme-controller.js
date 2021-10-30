@@ -13,25 +13,26 @@ function renderGallery(word) {
 
     if (word) console.log(word);
     if (!word) {
-        elGalleryGrid.innerHTML = '';
+        elGalleryGrid.innerHTML = "";
         imgs.map((img) => {
             loadImage(img.url, elGalleryGrid);
         });
+        addClickEvents();
     } else {
-        elGalleryGrid.innerHTML = '';
+        elGalleryGrid.innerHTML = "";
         imgs.map((img) => {
             const imgUrl = getUrlByTag(img, word);
             if (!imgUrl) return;
             loadImage(imgUrl, elGalleryGrid);
         });
+        addClickEvents();
     }
 }
 
 function getUrlByTag(img, word) {
-    const keywords = img.keywords
-    if (!keywords) return
-    const keywordsStr = keywords.toString()
-    console.log(keywordsStr);
+    const keywords = img.keywords;
+    if (!keywords) return;
+    const keywordsStr = keywords.toString();
     if (keywordsStr.includes(word.toLowerCase())) return `${img.url}`;
 }
 
@@ -85,7 +86,7 @@ function addClickEvents() {
                 document.documentElement.scrollTop = 0;
             });
         });
-    }, 750);
+    }, 50);
 }
 
 function onSelectMeme(img) {

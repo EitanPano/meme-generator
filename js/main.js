@@ -3,7 +3,6 @@
 function onInit() {
     renderGallery();
     setCanvas();
-    addClickEvents();
     addListeners();
 
     console.log("Working");
